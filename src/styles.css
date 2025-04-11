@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+@theme{
+    --breakpoint-xl: 1440px;
+    --color-side-bar-light: #F5F5F5;
+    --color-border-gray: rgba(95, 95, 95, 0.5);
+    --color-text-inactive: rgba(130, 130, 130, 0.5);
+    --color-green: rgba(46, 119, 72, 1);
+    --color-text-gray: rgba(74, 74, 74, 1);
+}
+
+:root{
+    --layout: 1440px;
+    --sidebar: 260px;
+}

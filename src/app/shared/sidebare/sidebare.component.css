@@ -1,0 +1,31 @@
+
+
+.costum-padding{
+    padding-left: calc( 50vw - var(--layout) / 2);
+    box-sizing: unset;
+}
+
+@media (max-width: 1482px) {
+    .costum-padding{
+        padding-left: 22px;
+    }
+}
+
+.under-text{
+    height: 2px;
+    width: 100%;
+    background-color: rgba(130, 130, 130, 0.5);
+}
+
+.active .under-text{
+    background-color: #2E7748;
+    width: 120px;
+}
+
+.active{
+    padding-right: 0px;
+}
+
+.active span{
+    color: #2E7748;
+}

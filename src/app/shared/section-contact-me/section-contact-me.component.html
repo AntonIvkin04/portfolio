@@ -1,5 +1,16 @@
-<section class="flex flex-col [&_span]:text-text-gray">
+<section class="flex flex-col">
     <div class="flex justify-center">
-        <span class="text-left text-[38px] mb-[22px]">Let's work together!</span>
+        <span class="text-left text-[38px] mb-[22px] text-black">Let's work together!</span>
     </div>
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="flex flex-col items-center gap-[32px]">
+        <div class="flex flex-col items-center gap-[22px]">
+            <input type="email" placeholder="E-Mail Adresse..."
+                class="h-[44px] w-[440px] border-[1px] placeholder-gray-500 focus:invalid:border-red-700 focus:invalid:outline-red-700 focus:invalid:shadow-red-700 border-text-gray focus:border-green focus:outline focus:outline-green focus:shadow-green rounded-md shadow-sm p-2">
+            <input placeholder="Name..." type="text"
+                class="h-[44px] w-[440px] border-1 placeholder-gray-500 border-text-gray focus:border-green focus:outline focus:outline-green focus:shadow-green rounded-md shadow-sm  p-2">
+        </div>
+        <textarea placeholder="Deine Nachricht..."
+            class="w-[640px] placeholder-gray-500 h-[88px] rounded-md border-1 focus:border-green focus:outline focus:outline-green shadow-sm  focus:shadow-green border-text-gray p-2 resize-none"></textarea>
+            <button type="submit">lol</button>
+    </form>
 </section>

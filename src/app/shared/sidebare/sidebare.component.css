@@ -29,3 +29,9 @@
 .active span{
     color: #2E7748;
 }
+
+@media (max-height: 820px) {
+    .projects-sidebar{
+        display: none;
+    }
+}

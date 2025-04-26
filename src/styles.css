@@ -14,3 +14,8 @@
     --layout: 1440px;
     --sidebar: 260px;
 }
+
+@font-face {
+    font-family: "Instagram";
+    src: url(/font/InstagramSans.ttf);
+}

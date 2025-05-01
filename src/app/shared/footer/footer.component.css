@@ -1,0 +1,11 @@
+.footer-padding{
+    padding-left: calc(50vw - var(--layout) / 2 + var(--sidebar));
+    padding-right: calc(50vw - var(--layout) / 2);
+}
+
+@media (max-width: 1482px) {
+    .footer-padding{
+        padding-right: 10px;
+        padding-left: 282px;
+    }
+}

@@ -1,9 +1,14 @@
 <section class="flex flex-col ">
     <span class="text-left text-[38px] mb-[22px]">Projekte</span>
+    <div class="mb-6 flex flex-row gap-[18px] [&_span]:px-2 [&_span]:py-1 [&_span]:rounded-xl [&_span]:hover:bg-side-bar-light [&_span]:cursor-pointer [&_span]:border-[1px] [&_span]:border-border-gray">
+        <span>2025</span>
+        <span>2024</span>
+        <span>2023</span>
+    </div>
     <div id="project-wrapper" class="flex flex-row gap-[22px] h-[100%] flex-wrap">
 
         @for (item of project.list; track $index; let i = $index) {
-        <div class="w-[396px] h-[222px] border-2 rounded-xl border-green ">
+        <div class="w-[396px] h-[222px] border-2 rounded-xl border-green hover:scale-98 cursor-pointer transition-all ">
             <div class="p-[12px] w-full h-full flex flex-col justify-between">
                 <div>
                     <div>

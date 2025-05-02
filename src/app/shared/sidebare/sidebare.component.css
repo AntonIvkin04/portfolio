@@ -34,4 +34,12 @@
     .projects-sidebar{
         display: none;
     }
+
+    .divider-sidebare{
+        display: none;
+    }
+
+    .laptop-height{
+        gap: 164px!important;
+    }
 }

@@ -20,7 +20,7 @@
 
             @for (item of project.list; track $index; let i = $index) {
             <div
-                class="w-full h-[222px] shadow-md inset-shadow-xs rounded-xl border-green hover:scale-98 cursor-pointer transition-all bg-white">
+                class="w-full h-[222px] shadow-md inset-shadow-xs rounded-xl border-green hover:scale-98 transition-all select-none bg-white">
                 <div class="p-[12px] w-full h-full flex flex-col justify-between">
                     <div>
                         <div>
@@ -34,10 +34,10 @@
                         <span class="text-text-gray">{{project.list[i].description}}</span>
                     </div>
                     <div id="button-wrapper" class="flex flex-row gap-[16px] mt-[12px]">
-                        <button
+                        <button  routerLink="{{ project.list[i].path }}"
                             class="text-green border-green border-[1px] px-2 py-1 rounded-xl cursor-pointer hover:bg-green hover:text-white transition-all">Demo
                         </button>
-                        <button
+                        <button 
                             class=" text-green border-green border-[1px] px-2 py-1 rounded-xl cursor-pointer hover:bg-green hover:text-white transition-all ">GitHub
                         </button>
                     </div>

@@ -13,17 +13,13 @@
 
 .under-text{
     height: 2px;
-    width: 100%;
     background-color: rgba(130, 130, 130, 0.5);
+    transition: width 125ms ease-in-out;
 }
 
 .active .under-text{
     background-color: #2E7748;
-    width: 120px;
-}
-
-.active{
-    padding-right: 0px;
+    width: 120px!important;
 }
 
 .active span{

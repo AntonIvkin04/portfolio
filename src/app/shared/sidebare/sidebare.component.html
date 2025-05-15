@@ -7,22 +7,22 @@
             <div id="sidebare-current-section"
                 class="flex flex-col items-end [&_span]:font-semibold [&_span]:text-text-inactive">
                 <div id="current-section-wrapper"
-                    class="flex flex-col items-start [&_div]:pr-[24px] gap-[22px] [&_span]:text-[18px] [&_div]:cursor-pointer">
-                    <div class="active">
-                        <span>Über mich</span>
-                        <div class="under-text"></div>
+                    class="flex flex-col items-start [&>div]:w-[120px] gap-[22px] [&_span]:text-[18px] [&_div]:cursor-pointer">
+                    <div [class.active]="aboutme">
+                        <span #spans >Über mich</span>
+                        <div #under class="under-text"></div>
                     </div>
-                    <div>
-                        <span>Skills</span>
-                        <div class="under-text"></div>
+                    <div [class.active]="skill" >
+                        <span #spans >Skills</span>
+                        <div #under class="under-text"></div>
                     </div>
-                    <div>
-                        <span>Projekte</span>
-                        <div class="under-text"></div>
+                    <div [class.active]="project">
+                        <span #spans >Projekte</span>
+                        <div #under class="under-text"></div>
                     </div>
-                    <div>
-                        <span>Contact me</span>
-                        <div class="under-text"></div>
+                    <div [class.active]="contact">
+                        <span #spans >Contact me</span>
+                        <div #under class="under-text"></div>
                     </div>
                 </div>
             </div>

@@ -30,7 +30,7 @@ export class SectionProjectComponent {
         description : "Yurei's Wish ist ein Canva-Browser Game, welches mich unterstützte OOP anzuwenden.",
         icon : "/img/yureis-wish-icon.png",
         date : "2022",
-        path : "yureis-wish"
+        path : ""
        },
        { 
         name: "PokeAPI",

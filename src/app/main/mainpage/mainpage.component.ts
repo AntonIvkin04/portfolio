@@ -12,4 +12,21 @@ import { FooterComponent } from '../../shared/footer/footer.component';
 })
 export class MainpageComponent {
 
-}
+  constructor(){
+  }
+
+  test(){
+    console.log('test')
+  }
+
+   onScroll(event: Event): void {
+    const element = event.target as HTMLElement;
+    console.log('Element gescrollt!', element.scrollTop, element.scrollHeight, element.clientHeight);
+
+    // Beispiel: Funktion aufrufen, wenn der Nutzer das Ende erreicht hat
+    if (element.scrollTop + element.clientHeight >= element.scrollHeight) {
+      console.log('Ende des Containers erreicht!');
+    }
+  }
+  }
+

@@ -13,4 +13,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 export class AppComponent {
   title:string = 'portfolio';
   demo:boolean = true;
+
+  test(){
+    console.log("test")
+  }
 }

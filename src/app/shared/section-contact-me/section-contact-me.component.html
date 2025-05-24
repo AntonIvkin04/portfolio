@@ -2,40 +2,12 @@
     <!-- <div class="flex justify-center">
         <span class="text-left text-[38px] mb-[48px] text-black">Contact me</span>
     </div> -->
-    <div class="flex flex-col gap-[88px]">
-        <div class="flex flex-row gap-[28px]">
-            <article class="text-text-gray text-xl w-[100%]">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
-                ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </article>
-        <!-- <div class="w-[50%] flex flex-col items-center">
-                <div
-                    class="flex flex-col gap-[22px] items-center rounded-xl w-[80%] py-2 hover:bg-side-bar-light transition-all cursor-pointer">
-                    <div class="flex flex-center rounded-full w-max p-3 cursor-pointer">
-                        <img src="img/instagram-profile.png" width="288" class="rounded-full outline-green outline-2">
-                    </div>
-                    <div class="flex flex-row justify-center">
-                        <div
-                            class="flex flex-row gap-[12px] cursor-pointer transition-all hover:bg-side-bar-light w-max p-2 rounded-xl">
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="#2e7748" width="64" height="64"
-                                    viewBox="0 0 24 24">
-                                    <path
-                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                                </svg>
-                            </div>
-                            <div class="text-5xl flex items-center font-[Instagram] text-green">&#64;anton.ikn</div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+    <div class="flex flex-col gap-[48px]">
+        <div class="flex flex-col gap-[32px] items-center justify-center font-[Contact-Font] bg-side-bar-light dark:bg-side-bar-dark [&_span]:dark:text-white py-12 rounded-2xl text-5xl [&_a]:text-green [&_a]:dark:text-green-dm [&_span]:text-center">
+            <span>Eine Idee für ein <a>Projekt?</a></span>
+            <span>Eine <a>Nachricht</a> könnte genügen.</span>
         </div>
         <div class="flex flex-col items-center">
-            <span class="text-2xl mb-6">schreib mir eine Nachricht per E-Mail!</span>
             <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="flex flex-col items-center gap-[48px] w-[80%]">
                 <div class="flex flex-col items-center gap-[32px] w-full">
                     <div class="w-full relative">
@@ -47,15 +19,17 @@
                     focus:invalid:shadow-red-700
                     border-text-gray 
                     peer
+                    placeholder:select-none
                     placeholder-transparent
                     border-0
                     focus:outline-0
                     text-lg
                     border-b-2
                     border-b-gray-300
+                    dark:text-white
                     ">
                         <div
-                            class="w-full top-[42px] absolute peer-placeholder-shown:w-0 h-[2px] bg-green peer-focus:w-full transition-all">
+                            class="w-full top-[42px] absolute peer-placeholder-shown:w-0 h-[2px] bg-green dark:bg-green-dm peer-focus:w-full transition-all">
                         </div>
                         <label class="
                     absolute 
@@ -66,10 +40,11 @@
                     text-[12px]
                     transition-all
                     peer-placeholder-shown:top-2.5
+                    placeholder:select-none
                     peer-placeholder-shown:text-[16px]
                     peer-focus:-top-3
                     peer-focus:text-[12px]
-                    peer-focus:text-black
+                    peer-focus:dark:text-white
                     text-gray-500
                     ">E-Mail</label>
                     </div>
@@ -83,14 +58,16 @@
                     border-text-gray 
                     peer
                     placeholder-transparent
+                    placeholder:select-none
                     border-0
                     focus:outline-0
                     text-lg
                     border-b-2
                     border-b-gray-300
+                    dark:text-white
                     ">
                         <div
-                            class="w-full top-[42px] absolute peer-placeholder-shown:w-0 h-[2px] bg-green peer-focus:w-full transition-all origin-center">
+                            class="w-full top-[42px] absolute peer-placeholder-shown:w-0 h-[2px] bg-green dark:bg-green-dm peer-focus:w-full transition-all origin-center">
                         </div>
                         <label class="
                     absolute 
@@ -104,7 +81,7 @@
                     peer-placeholder-shown:text-[16px]
                     peer-focus:-top-2.5
                     peer-focus:text-[12px]
-                    peer-focus:text-black
+                    peer-focus:dark:text-white
                     text-gray-500
                     ">Name</label>
                     </div>
@@ -122,10 +99,13 @@
             focus:shadow-none  
             border-text-gray 
             p-2 
+            focus:dark:outline-white
+            dark:border-white
+            dark:text-white
             resize-none
             text-lg"></textarea>
                     <button type="submit"
-                        class=" text-green border-green border-[1px] py-2 px-3 rounded-xl cursor-pointer shadow-md hover:bg-green hover:text-white transition-all">Nachricht
+                        class=" text-green border-green dark:text-green-dm dark:border-green-dm border-[1px] py-2 px-3 rounded-xl cursor-pointer shadow-md hover:bg-green hover:text-white transition-all">Nachricht
                         senden!</button>
                 </div>
             </form>

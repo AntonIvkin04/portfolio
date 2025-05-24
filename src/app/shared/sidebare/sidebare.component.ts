@@ -1,5 +1,7 @@
 import { Component, ElementRef, inject, ViewChildren, QueryList } from '@angular/core';
 import { ScreenResService } from '../../screen-res.service';
+import { LanguageDecService } from '../../language-dec.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -10,19 +12,25 @@ import { ScreenResService } from '../../screen-res.service';
 })
 export class SidebareComponent {
   private screenRes = inject(ScreenResService)
-  
+
+  private langService = inject(LanguageDecService)
+
+  langSubscription: Subscription | undefined
+  currentLang: string = '';
+
   @ViewChildren('spans') spans!: QueryList<ElementRef>;
   @ViewChildren('under') unders!: QueryList<ElementRef>;
   spanWidthCache: number[] = []
   undersIndex: number = 0;
+  underlineInit:boolean = true;
 
   aboutme: boolean = false;
   skill: boolean = false;
   project: boolean = false;
   contact: boolean = false;
 
-  constructor(){
-   
+  constructor() {
+
   }
 
   ngOnInit() {
@@ -36,19 +44,35 @@ export class SidebareComponent {
         console.log(x)
       })
     }, 500)
+
+    this.langSubscription = this.langService.lang$.subscribe(lang => {
+      this.currentLang = lang
+      setTimeout(() =>{
+        this.changeUnderlineWidth()
+      })
+    })
   }
 
-  ngAfterViewInit() {
+  ngOnDestroy() {
+    this.langSubscription?.unsubscribe()
+  }
+
+  changeUnderlineWidth() {
     this.spans.forEach((e) => {
       this.spanWidthCache.push(e.nativeElement.offsetWidth)
     })
 
-    this.unders.forEach((e) =>{
+    this.unders.forEach((e) => {
       e.nativeElement.style.width = `${this.spanWidthCache[this.undersIndex]}px`;
       this.undersIndex++;
     })
 
     this.undersIndex = 0;
+    this.spanWidthCache = [];
+  }
+
+  ngAfterViewInit() {
+    this.changeUnderlineWidth()
   }
 
   markCurrentSection(x: number) {

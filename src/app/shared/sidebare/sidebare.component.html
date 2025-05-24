@@ -1,53 +1,100 @@
-<div class="h-screen w-[260px] costum-padding bg-side-bar-light shadow-md">
+<div class="h-screen w-[260px] costum-padding bg-side-bar-light dark:bg-side-bar-dark shadow-md">
     <div class="sidebare-wrapper w-full">
-        <div class="h-[64px] top-0 border-b-border-gray border-b-[0.5px] flex justify-start items-center">
-            <span class="text-3xl font-semibold">anton-ivkin.de</span>
+        <div
+            class="h-[64px] top-0 border-b-border-gray dark:border-b-white border-b-[0.5px] flex justify-start items-center">
+            <span class="text-3xl font-semibold dark:text-white">anton-ivkin.de</span>
         </div>
         <div id="sidebare-content-wrapper" class="mt-[48px] flex flex-col gap-[40px] laptop-height">
             <div id="sidebare-current-section"
-                class="flex flex-col items-end [&_span]:font-semibold [&_span]:text-text-inactive">
+                class="flex flex-col items-end [&_span]:font-semibold [&_span]:text-text-inactive [&_span]:dark:text-white">
                 <div id="current-section-wrapper"
                     class="flex flex-col items-start [&>div]:w-[120px] gap-[22px] [&_span]:text-[18px] [&_div]:cursor-pointer">
+                    @if(this.currentLang === "de"){
                     <div [class.active]="aboutme">
-                        <span #spans >Über mich</span>
+                        <span #spans>Über mich</span>
                         <div #under class="under-text"></div>
                     </div>
-                    <div [class.active]="skill" >
-                        <span #spans >Skills</span>
+                    <div [class.active]="skill">
+                        <span #spans>Projekte</span>
                         <div #under class="under-text"></div>
                     </div>
                     <div [class.active]="project">
-                        <span #spans >Projekte</span>
+                        <span #spans>Fähigkeiten</span>
                         <div #under class="under-text"></div>
                     </div>
                     <div [class.active]="contact">
-                        <span #spans >Contact me</span>
+                        <span #spans>Schreib mir!</span>
                         <div #under class="under-text"></div>
+                    </div>
+                    }
+
+                    @if(this.currentLang === "en"){
+                    <div [class.active]="aboutme">
+                        <span #spans>About me</span>
+                        <div #under class="under-text"></div>
+                    </div>
+                    <div [class.active]="skill">
+                        <span #spans>Projects</span>
+                        <div #under class="under-text"></div>
+                    </div>
+                    <div [class.active]="project">
+                        <span #spans>Skills</span>
+                        <div #under class="under-text"></div>
+                    </div>
+                    <div [class.active]="contact">
+                        <span #spans>Contact me</span>
+                        <div #under class="under-text"></div>
+                    </div>
+                    }
+                </div>
+            </div>
+            <div id="sidebare-lets-connect" class="flex flex-col items-start">
+                <div class="flex flex-col items-start">
+                    <span class="text-[18px] font-semibold dark:text-white">
+                        @if(this.currentLang === "de"){
+                        Kontaktier mich!
+                        }
+
+                        @if(this.currentLang === "en"){
+                        Let's connect!
+                        }
+                    </span>
+                    <div
+                        class="[&_span]:text-green [&_span]:dark:text-green-dm flex flex-col gap-[8px] [&_span]:font-semibold pt-[16px] [&_span]:cursor-pointer [&_span]:hover:underline">
+
+                        @if(this.currentLang === "de"){
+                        <span>Find mich auf Instagram!</span>
+                        <span>Schreib eine Mail</span>
+                        <span>Sag Hallo auf Discord 👋</span>
+                        }
+
+                        @if(this.currentLang === "en"){
+                        <span>Find me on Instagram</span>
+                        <span>Write me an E-Mail</span>
+                        <span>Say Hello on Discord 👋</span>
+                        }
                     </div>
                 </div>
             </div>
-                <div id="sidebare-lets-connect" class="flex flex-col items-start">
-                    <div class="flex flex-col items-start">
-                        <span class="text-[18px] font-semibold">Let's connect!</span>
-                        <div
-                            class="[&_span]:text-green flex flex-col gap-[8px] [&_span]:font-semibold pt-[16px] [&_span]:cursor-pointer [&_span]:hover:underline">
-                            <span>Find me on Instagram</span>
-                            <span>Write me an E-Mail</span>
-                            <span>Say Hello on Discord 👋</span>
-                        </div>
-                    </div>
+            <hr class="w-[90%] h-px border-0 bg-border-gray dark:bg-white divider-sidebare">
+            <div class="projects-sidebar">
+                <span class="font-semibold text-[18px] dark:text-white">
+                    @if(this.currentLang === "de"){
+                        Projekte
+                    }
+
+                    @if(this.currentLang === "en"){
+                        Projects
+                    }
+                </span>
+                <div id="projects-sidebar"
+                    class="flex flex-col gap-[8px] pt-[16px] [&_span]:font-semibold [&_span]:text-text-gray [&_span]:dark:text-[#D3D3D3] [&_span]:hover:underline [&_span]:cursor-pointer">
+                    <span>Kochwelt</span>
+                    <span>PokeAPI</span>
+                    <span>Join</span>
+                    <span>Yurei's Wish</span>
                 </div>
-                <hr class="w-[90%] h-px border-0 bg-border-gray divider-sidebare">
-                <div class="projects-sidebar">
-                    <span class="font-semibold text-[18px]">Projects</span>
-                    <div id="projects-sidebar"
-                        class="flex flex-col gap-[8px] pt-[16px] [&_span]:font-semibold [&_span]:text-text-gray [&_span]:hover:underline [&_span]:cursor-pointer">
-                        <span>Kochwelt</span>
-                        <span>PokeAPI</span>
-                        <span>Join</span>
-                        <span>Yurei's Wish</span>
-                    </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>

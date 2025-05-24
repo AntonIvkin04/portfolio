@@ -1,0 +1,27 @@
+.icon{
+    left: max(calc(88px * 6), 100%);
+}
+
+.icon1{
+animation-delay: calc(60s / 6 * (6 - 1) * -1);
+}
+
+.icon2{
+animation-delay: calc(60s / 6 * (6 - 2) * -1);    
+}
+
+.icon3{
+animation-delay: calc(60s / 6 * (6 - 3) * -1);   
+}
+
+.icon4{
+animation-delay: calc(60s / 6 * (6 - 4) * -1);   
+}
+
+.icon5{
+animation-delay: calc(60s / 6 * (6 - 5) * -1);   
+}
+
+.icon6{
+animation-delay: calc(60s / 6 * (6 - 6) * -1);   
+}

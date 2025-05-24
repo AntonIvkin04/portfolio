@@ -1,41 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
 
-@theme{
-    --breakpoint-xl: 1440px;
-    --color-side-bar-light: #F5F5F5;
-    --color-border-gray: rgba(95, 95, 95, 0.5);
-    --color-text-inactive: rgba(130, 130, 130, 0.5);
-    --color-green: rgba(46, 119, 72, 1);
-    --color-text-gray: rgba(74, 74, 74, 1);
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --breakpoint-xl: 1440px;
+  --color-side-bar-light: #F5F5F5;
+  --color-side-bar-dark: #404040;
+  --color-border-gray: rgba(95, 95, 95, 0.5);
+  --color-text-inactive: rgba(130, 130, 130, 0.5);
+  --color-green: rgba(46, 119, 72, 1);
+  --color-green-dm: #4fbd76;
+  --color-text-gray: rgba(74, 74, 74, 1);
 }
 
-:root{
-    --layout: 1440px;
-    --sidebar: 260px;
+:root {
+  --layout: 1440px;
+  --sidebar: 260px;
 }
 
 @font-face {
-    font-family: "Instagram";
-    src: url(/font/InstagramSans.ttf);
+  font-family: "Instagram";
+  src: url(/font/InstagramSans.ttf);
 }
 
-/* Custom transition */
-@keyframes rotate-out {
- to {
-   transform: rotate(90deg);
- }
+@font-face {
+  font-family: "Contact-Font";
+  src: url(/font/Orbit-Regular.ttf);
 }
-@keyframes rotate-in {
- from {
-   transform: rotate(-90deg);
- }
+
+@keyframes animation-scroll-left{
+    to{
+        left: -120px;
+    }
 }
-::view-transition-old(count),
-::view-transition-new(count) {
- animation-duration: 200ms;
- animation-name: -ua-view-transition-fade-in, rotate-in;
-}
-::view-transition-old(count) {
- animation-name: -ua-view-transition-fade-out, rotate-out;
+
+html{
+  scroll-behavior: smooth;
 }

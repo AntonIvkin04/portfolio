@@ -8,6 +8,7 @@
   --color-side-bar-light: #F5F5F5;
   --color-side-bar-dark: #404040;
   --color-border-gray: rgba(95, 95, 95, 0.5);
+  --color-border-gray-dm: #D3D3D3;
   --color-text-inactive: rgba(130, 130, 130, 0.5);
   --color-green: rgba(46, 119, 72, 1);
   --color-green-dm: #4fbd76;
@@ -29,12 +30,50 @@
   src: url(/font/Orbit-Regular.ttf);
 }
 
-@keyframes animation-scroll-left{
-    to{
-        left: -120px;
-    }
+@keyframes animation-scroll-left {
+  to {
+    left: -120px;
+  }
 }
 
-html{
+html {
   scroll-behavior: smooth;
+}
+
+.slideInDialog-md {
+  position: absolute !important;
+  animation: animateModalSlideIn-md 475ms cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.slideOutDialog-md {
+  position: absolute !important;
+  animation: animateModalSlideOut-md 475ms cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes animateModalSlideIn-md {
+  from {
+    top: -800px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes animateModalSlideOut-md {
+  from {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    top: 1800px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

@@ -3,9 +3,19 @@
         <span class="text-left text-[38px] mb-[48px] text-black">Contact me</span>
     </div> -->
     <div class="flex flex-col gap-[48px]">
-        <div class="flex flex-col gap-[32px] items-center justify-center font-[Contact-Font] bg-side-bar-light dark:bg-side-bar-dark [&_span]:dark:text-white py-12 rounded-2xl text-5xl [&_a]:text-green [&_a]:dark:text-green-dm [&_span]:text-center">
+        <div
+            class="flex flex-col gap-[32px] items-center justify-center font-[Contact-Font] bg-side-bar-light dark:bg-side-bar-dark [&_span]:dark:text-white py-8 rounded-2xl text-5xl [&_a]:text-green [&_a]:dark:text-green-dm [&_span]:text-center inset-shadow-2xs shadow-2xs">
+
+            @if(this.currentLang === "de"){
             <span>Eine Idee für ein <a>Projekt?</a></span>
             <span>Eine <a>Nachricht</a> könnte genügen.</span>
+            }
+
+            @if(this.currentLang === "en"){
+            <span>A <a>project</a> to bring to life?</span>
+            <span>A <a>message</a> might be enough.</span>
+            }
+
         </div>
         <div class="flex flex-col items-center">
             <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="flex flex-col items-center gap-[48px] w-[80%]">
@@ -87,6 +97,7 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-col items-center gap-[22px]">
+                    @if (this.currentLang === "de") {
                     <textarea placeholder="Deine Nachricht" class="w-full 
             placeholder-gray-500 
             h-[134px] 
@@ -104,6 +115,26 @@
             dark:text-white
             resize-none
             text-lg"></textarea>
+                    }
+                    @if(this.currentLang === "en"){
+                    <textarea placeholder="Your message" class="w-full 
+            placeholder-gray-500 
+            h-[134px] 
+            rounded-md 
+            border-1 
+            focus:border-green 
+            focus:outline 
+            focus:outline-green 
+            shadow-sm  
+            focus:shadow-none  
+            border-text-gray 
+            p-2 
+            focus:dark:outline-white
+            dark:border-white
+            dark:text-white
+            resize-none
+            text-lg"></textarea>
+                    }
                     <button type="submit"
                         class=" text-green border-green dark:text-green-dm dark:border-green-dm border-[1px] py-2 px-3 rounded-xl cursor-pointer shadow-md hover:bg-green hover:text-white transition-all">Nachricht
                         senden!</button>

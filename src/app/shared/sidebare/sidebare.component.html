@@ -63,8 +63,8 @@
                         class="[&_span]:text-green [&_span]:dark:text-green-dm flex flex-col gap-[8px] [&_span]:font-semibold pt-[16px] [&_span]:cursor-pointer [&_span]:hover:underline">
 
                         @if(this.currentLang === "de"){
-                        <span>Find mich auf Instagram!</span>
-                        <span>Schreib eine Mail</span>
+                        <span (click)="openModualInfo('instagram')">Finde mich auf Instagram</span>
+                        <span (click)="openModualInfo('mail')">Schreib eine Mail</span>
                         <span>Sag Hallo auf Discord 👋</span>
                         }
 
@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <hr class="w-[90%] h-px border-0 bg-border-gray dark:bg-white divider-sidebare">
+            <hr class="w-[90%] h-px border-0 bg-border-gray dark:bg-border-gray-dm divider-sidebare">
             <div class="projects-sidebar">
                 <span class="font-semibold text-[18px] dark:text-white">
                     @if(this.currentLang === "de"){

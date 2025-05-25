@@ -2,7 +2,8 @@ import { Component, ElementRef, inject, ViewChildren, QueryList } from '@angular
 import { ScreenResService } from '../../screen-res.service';
 import { LanguageDecService } from '../../language-dec.service';
 import { Subscription } from 'rxjs';
-
+import {Dialog} from '@angular/cdk/dialog';
+import { DialogSidebarInfoComponent } from '../dialog/dialog-sidebar-info/dialog-sidebar-info.component';
 
 @Component({
   selector: 'app-sidebare',
@@ -12,8 +13,8 @@ import { Subscription } from 'rxjs';
 })
 export class SidebareComponent {
   private screenRes = inject(ScreenResService)
-
   private langService = inject(LanguageDecService)
+  private dialog = inject(Dialog)
 
   langSubscription: Subscription | undefined
   currentLang: string = '';
@@ -110,4 +111,11 @@ export class SidebareComponent {
     }
   }
 
+  openModualInfo(type:string){
+    const data = {
+      type: type,
+      currentLang: this.currentLang,
+    }
+    this.dialog.open(DialogSidebarInfoComponent, {data:data, autoFocus: '__non_existing_element__', panelClass: ['slideInDialog-md','animateDialog']});
+  }
 }

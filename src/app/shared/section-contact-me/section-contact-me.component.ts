@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { LanguageDecService } from '../../language-dec.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-section-contact-me',
@@ -9,8 +11,23 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './section-contact-me.component.css'
 })
 export class SectionContactMeComponent {
+  private langService = inject(LanguageDecService)
+  langSubscription: Subscription | undefined;
+
+  currentLang:string = '';
+
   constructor() {
 
+  }
+
+  ngOnInit(){
+    this.langSubscription = this.langService.lang$.subscribe(lang => {
+      this.currentLang = lang;
+    })
+  }
+
+  ngOnDestroy(){
+    this.langSubscription?.unsubscribe();
   }
 
   onSubmit(form: NgForm) {
@@ -22,5 +39,7 @@ export class SectionContactMeComponent {
       console.log('Das Formular ist nicht gültig.');
     }
   }
+
+
 
 }

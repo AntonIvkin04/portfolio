@@ -19,13 +19,24 @@
                         <div>
                             <div>
                                 <div class="flex flex-row justify-between items-center">
-                                    <span class="text-[18px] font-semibold dark:text-white">{{ project.list[i].name }}</span>
+                                    <span class="text-[18px] font-semibold dark:text-white">{{ project.list[i].name
+                                        }}</span>
                                     <img class="w-[28px] h-[28px]" src="{{project.list[i].icon}}">
                                 </div>
                                 <span class="text-[14px] dark:text-white">{{ project.list[i].date }}</span>
                             </div>
                             <hr class="w-[100%] h-[2px] border-0 bg-border-gray mt-[12px] mb-[12px]">
-                            <span class="text-text-gray dark:text-white">{{project.list[i].description}}</span>
+                            <span class="text-text-gray dark:text-white">
+
+                                @if(this.currentLang === "de"){
+                                {{ project.list[i].description_de }}
+                                }
+
+                                @if(this.currentLang === "en"){
+                                {{ project.list[i].description_en }}
+                                }
+
+                            </span>
                         </div>
                         <div id="button-wrapper" class="flex flex-row gap-[16px] mt-[12px]">
                             <button routerLink="{{ project.list[i].path }}"

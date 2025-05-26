@@ -1,0 +1,129 @@
+<div class="flex flex-col items-center">
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="flex flex-col items-center gap-[48px] w-[80%]">
+        <div class="flex flex-col items-center gap-[32px] w-full">
+            <div class="w-full relative">
+                <input type="email" placeholder="test" class="
+                    h-[44px] 
+                    w-full
+                    focus:invalid:border-red-700 
+                    focus:invalid:outline-red-700 
+                    focus:invalid:shadow-red-700
+                    border-text-gray 
+                    peer
+                    placeholder:select-none
+                    placeholder-transparent
+                    border-0
+                    focus:outline-0
+                    text-lg
+                    border-b-2
+                    border-b-gray-300
+                    dark:text-white
+                    ">
+                <div
+                    class="w-full top-[42px] absolute peer-placeholder-shown:w-0 h-[2px] bg-green dark:bg-green-dm peer-focus:w-full transition-all">
+                </div>
+                <label class="
+                    absolute 
+                    pointer-events-none 
+                    left-0
+                    cursor-text 
+                    -top-3
+                    text-[12px]
+                    transition-all
+                    peer-placeholder-shown:top-2.5
+                    placeholder:select-none
+                    peer-placeholder-shown:text-[16px]
+                    peer-focus:-top-3
+                    peer-focus:text-[12px]
+                    peer-focus:dark:text-white
+                    text-gray-500
+                    dark:text-white
+                    ">E-Mail</label>
+            </div>
+            <div class="w-full relative">
+                <input type="text" placeholder="test" class="
+                    h-[44px] 
+                    w-full
+                    focus:invalid:border-red-700 
+                    focus:invalid:outline-red-700 
+                    focus:invalid:shadow-red-700
+                    border-text-gray 
+                    peer
+                    placeholder-transparent
+                    placeholder:select-none
+                    border-0
+                    focus:outline-0
+                    text-lg
+                    border-b-2
+                    border-b-gray-300
+                    dark:text-white
+                    ">
+                <div
+                    class="w-full top-[42px] absolute peer-placeholder-shown:w-0 h-[2px] bg-green dark:bg-green-dm peer-focus:w-full transition-all origin-center">
+                </div>
+                <label class="
+                    absolute 
+                    pointer-events-none 
+                    left-0
+                    cursor-text 
+                    -top-2.5
+                    text-[12px]
+                    transition-all
+                    peer-placeholder-shown:top-2.5
+                    peer-placeholder-shown:text-[16px]
+                    peer-focus:-top-2.5
+                    peer-focus:text-[12px]
+                    peer-focus:dark:text-white
+                    text-gray-500
+                    dark:text-white
+                    ">Name</label>
+            </div>
+        </div>
+        <div class="w-full flex flex-col items-center gap-[22px]">
+            @if (this.currentLang === "de") {
+            <textarea placeholder="Deine Nachricht" class="w-full 
+            placeholder-gray-500 
+            dark:placeholder-white
+            h-[134px] 
+            rounded-md 
+            border-1 
+            focus:border-green 
+            focus:outline 
+            focus:outline-green 
+            shadow-sm  
+            focus:shadow-none 
+            dark:focus:outline-white 
+            border-text-gray 
+            p-2
+            dark:border-white
+            dark:text-white
+            resize-none
+            text-lg"></textarea>
+            }
+            @if(this.currentLang === "en"){
+            <textarea placeholder="Your message" class="w-full 
+            placeholder-gray-500
+            dark:placeholder-white 
+            h-[134px] 
+            rounded-md 
+            border-1 
+            focus:border-green 
+            focus:outline 
+            focus:outline-green 
+            dark:outline-white
+            shadow-sm  
+            focus:shadow-none  
+            border-text-gray 
+            p-2 
+            focus:dark:outline-white
+            dark:border-white
+            dark:text-white
+            resize-none
+            text-lg"></textarea>
+            }
+            <button type="submit"
+                class=" text-green border-green dark:text-green-dm dark:border-green-dm border-[1px] py-2 px-3 rounded-xl cursor-pointer shadow-md hover:bg-green hover:text-white transition-all">Nachricht
+                senden!</button>
+        </div>
+    </form>
+</div>

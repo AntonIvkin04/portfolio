@@ -1,9 +1,10 @@
-import { Component, ElementRef, inject, Inject, ViewChild } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { DIALOG_DATA, Dialog } from '@angular/cdk/dialog';
+import { FormComponent } from '../../form/form.component';
 
 @Component({
   selector: 'app-dialog-sidebar-info',
-  imports: [],
+  imports: [FormComponent],
   templateUrl: './dialog-sidebar-info.component.html',
   styleUrl: './dialog-sidebar-info.component.css'
 })

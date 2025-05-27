@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { LanguageDecService } from '../../language-dec.service';
+import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
 import { FormComponent } from '../form/form.component';
 

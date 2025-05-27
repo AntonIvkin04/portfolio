@@ -16,7 +16,7 @@
         <div
             class="group bg-green p-4 rounded-3xl hover:pr-12 transition-all hover:cursor-pointer flex flex-row items-center">
             <span class="text-6xl relative font-[Instagram] text-white dark:text-white">&#64;anton.ikn</span>
-            <div class="invisible group-hover:visible absolute pt-2 right-[70px]">
+            <div class="invisible group-hover:visible group-hover:delay-100 delay-0 absolute pt-2 right-[70px]">
                 <svg width="52px" height="52px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289L15.5303 11.1161C16.0185 11.6043 16.0185 12.3957 15.5303 12.8839L9.70711 18.7071C9.31658 19.0976 8.68342 19.0976 8.29289 18.7071C7.90237 18.3166 7.90237 17.6834 8.29289 17.2929L13.5858 12L8.29289 6.70711C7.90237 6.31658 7.90237 5.68342 8.29289 5.29289Z"
@@ -45,8 +45,81 @@
             <div class="w-full">
                 <app-form [currentLang]="this.currentLang"></app-form>
             </div>
-            <span class="text-l dark:text-white">oder direkt an <a class="text-blue-600 hover:underline cursor-pointer dark:text-teal-300">hallo&#64;anton-ivkin.de</a> 📧</span>
+
+            @if(this.currentLang === "de"){
+            <span class="text-l dark:text-white">oder direkt an <a
+                    class="text-blue-600 hover:underline cursor-pointer dark:text-teal-300">hallo&#64;anton-ivkin.de</a>
+                📧</span>
+            }
+
+            @if(this.currentLang === "en"){
+            <span class="text-l dark:text-white">or diract at <a
+                    class="text-blue-600 hover:underline cursor-pointer dark:text-teal-300">hello&#64;anton-ivkin.de</a>
+                📧</span>
+            }
         </div>
+    </div>
+</div>
+}
+
+@if(this.type === 'discord'){
+<div #dialogdiv
+    class="w-[580px] relative h-[508px] bg-side-bar-light dark:bg-side-bar-dark rounded-2xl inset-shadow-2xs shadow-2xs flex flex-col py-2 px-2 gap-[28px] overflow-hidden">
+    <div class="flex flex-row items-end justify-end">
+        <div (click)="close()"
+            class="hover:cursor-pointer [&_svg]:opacity-40 [&_svg]:dark:opacity-80 [&_svg]:hover:opacity-100 [&_svg]:dark:fill-white [&_svg]:fill-black">
+            <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" />
+            </svg>
+        </div>
+    </div>
+    <div class="flex flex-col justify-center items-center gap-[64px]">
+        <img class="rounded-full outline-[#7289DA] outline-4 w-[218px] h-[218px]" src="icons/discord-pfp.jpg">
+
+        @if(this.copied === false){
+        <div
+            class="group bg-[#7289DA] hover:pr-18 p-4 rounded-3xl transition-all hover:cursor-pointer flex flex-row items-center">
+            <span (click)="copyDiscord()"
+                class="text-6xl relative font-[Discord] text-white dark:text-white">antoschka4188</span>
+            <div
+                class="invisible [&_svg]:stroke-white group-hover:visible group-hover:delay-100  delay-0 absolute pb-0.5 right-[64px]">
+                <svg width="52px" height="52px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M8 5.00005C7.01165 5.00082 6.49359 5.01338 6.09202 5.21799C5.71569 5.40973 5.40973 5.71569 5.21799 6.09202C5 6.51984 5 7.07989 5 8.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V8.2C19 7.07989 19 6.51984 18.782 6.09202C18.5903 5.71569 18.2843 5.40973 17.908 5.21799C17.5064 5.01338 16.9884 5.00082 16 5.00005M8 5.00005V7H16V5.00005M8 5.00005V4.70711C8 4.25435 8.17986 3.82014 8.5 3.5C8.82014 3.17986 9.25435 3 9.70711 3H14.2929C14.7456 3 15.1799 3.17986 15.5 3.5C15.8201 3.82014 16 4.25435 16 4.70711V5.00005"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+        </div>
+        }
+
+        @if(this.copied === true){
+        <div
+            class="group bg-[#7289DA] p-4 rounded-3xl transition-all hover:cursor-default flex flex-row items-center gap-4">
+            <span  class="text-6xl relative font-[Discord] text-white dark:text-white">
+                @if(this.currentLang === "de"){
+                kopiert!
+                }
+
+                @if(this.currentLang === "en"){
+                copied!
+                }
+            </span>
+            <div
+                class=" [&_svg]:dark:fill-white">
+                <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" width="52px" height="52px" viewBox="0 0 78.369 78.369"
+                    xml:space="preserve">
+                    <g>
+                        <path d="M78.049,19.015L29.458,67.606c-0.428,0.428-1.121,0.428-1.548,0L0.32,40.015c-0.427-0.426-0.427-1.119,0-1.547l6.704-6.704
+		                        c0.428-0.427,1.121-0.427,1.548,0l20.113,20.112l41.113-41.113c0.429-0.427,1.12-0.427,1.548,0l6.703,6.704
+		                        C78.477,17.894,78.477,18.586,78.049,19.015z" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+        }
+
     </div>
 </div>
 }

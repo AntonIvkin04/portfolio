@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { LanguageDecService } from '../../language-dec.service';
+import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
 
 

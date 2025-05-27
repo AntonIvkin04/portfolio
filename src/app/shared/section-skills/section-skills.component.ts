@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SkillIconsMarqueeComponent } from '../skill-icons-marquee/skill-icons-marquee.component';
-import { LanguageDecService } from '../../language-dec.service';
+import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
 
 @Component({

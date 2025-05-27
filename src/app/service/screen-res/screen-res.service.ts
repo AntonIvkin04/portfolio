@@ -1,5 +1,7 @@
 import { Injectable, inject, OnDestroy } from '@angular/core';
-import { BehaviorSubject, startWith, debounceTime, distinctUntilChanged, Observable, Subscription, map, fromEvent } from 'rxjs';
+import { BehaviorSubject, startWith, debounceTime, distinctUntilChanged, Observable, Subscription, map, fromEvent, switchMap, of, takeUntil, filter } from 'rxjs';
+import { DialogInfoService } from '../dialog/dialog-info.service';
+
 
 
 interface ScreenDetails {
@@ -18,6 +20,8 @@ interface ScreenResRange {
 })
 
 export class ScreenResService {
+
+  private dialogInfoStatus = inject(DialogInfoService)
 
   private currentScrollY = new BehaviorSubject<number>(0);
   public currentScrollY$: Observable<number> = this.currentScrollY.asObservable();
@@ -74,14 +78,28 @@ export class ScreenResService {
   }
 
   subscribeScroll() {
-    this.scrollSubscription = fromEvent(window, 'scroll')
+    const scrollEvent = fromEvent(window, 'scroll')
       .pipe(
         debounceTime(1),
         map(() => window.scrollY),
         distinctUntilChanged()
-      )
-      .subscribe(scrollY => {
-        this.currentScrollY.next(scrollY)
+      );
+
+      const isDialogOpen$ = this.dialogInfoStatus.infoDialog$
+
+      this.scrollSubscription = isDialogOpen$
+      .pipe(
+        switchMap(isDialogOpen =>{
+          if(isDialogOpen){
+             return of(this.currentScrollY.getValue());
+          }else{
+            return scrollEvent.pipe(
+              takeUntil(this.dialogInfoStatus.infoDialog$.pipe(filter(status => status === true)))
+            )
+          }
+        })
+      ).subscribe(scrollY => {
+        this.currentScrollY.next(scrollY);
       })
   }
 

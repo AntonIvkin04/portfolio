@@ -30,6 +30,11 @@
   src: url(/font/Orbit-Regular.ttf);
 }
 
+@font-face {
+  font-family: "Discord";
+  src: url(/font/gg-sans-Semibold.ttf );
+}
+
 @keyframes animation-scroll-left {
   to {
     left: -120px;

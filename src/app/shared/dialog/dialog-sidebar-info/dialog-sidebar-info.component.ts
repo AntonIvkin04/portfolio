@@ -1,6 +1,8 @@
 import { Component, inject, Inject } from '@angular/core';
 import { DIALOG_DATA, Dialog } from '@angular/cdk/dialog';
 import { FormComponent } from '../../form/form.component';
+import { Clipboard } from '@angular/cdk/clipboard';
+
 
 @Component({
   selector: 'app-dialog-sidebar-info',
@@ -13,9 +15,12 @@ import { FormComponent } from '../../form/form.component';
 
 export class DialogSidebarInfoComponent {
   private dialog = inject(Dialog)
+  private clipboard = inject(Clipboard)
+
+
   public type: string = ''
   public currentLang: string = ''
-  
+  public copied: boolean | any = false;
 
   constructor(
     @Inject(DIALOG_DATA) public data: {
@@ -27,9 +32,13 @@ export class DialogSidebarInfoComponent {
     this.currentLang = this.data.currentLang
   }
 
-  close(){
+  close() {
     document.getElementsByClassName("animateDialog")[0].classList.remove("slideInDialog-md");
     document.getElementsByClassName("animateDialog")[0].classList.add("slideOutDialog-md");
-    setTimeout(() =>{this.dialog.closeAll();}, 400)
+    setTimeout(() => { this.dialog.closeAll(); }, 400)
+  }
+
+  copyDiscord() {
+    this.copied = this.clipboard.copy('antoschka4188')
   }
 }

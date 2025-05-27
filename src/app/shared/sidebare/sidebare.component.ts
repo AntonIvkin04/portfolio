@@ -1,6 +1,6 @@
 import { Component, ElementRef, inject, ViewChildren, QueryList } from '@angular/core';
-import { ScreenResService } from '../../screen-res.service';
-import { LanguageDecService } from '../../language-dec.service';
+import { ScreenResService } from '../../service/screen-res/screen-res.service';
+import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
 import {Dialog} from '@angular/cdk/dialog';
 import { DialogSidebarInfoComponent } from '../dialog/dialog-sidebar-info/dialog-sidebar-info.component';

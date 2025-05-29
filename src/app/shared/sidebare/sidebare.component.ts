@@ -1,14 +1,15 @@
 import { Component, ElementRef, inject, ViewChildren, QueryList } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ScreenResService } from '../../service/screen-res/screen-res.service';
 import { LanguageDecService } from '../../service/language/language-dec.service';
-import { Subscription, tap } from 'rxjs';
-import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { Subscription } from 'rxjs';
+import { Dialog } from '@angular/cdk/dialog';
 import { DialogSidebarInfoComponent } from '../dialog/dialog-sidebar-info/dialog-sidebar-info.component';
 import { ScrollYServiceService } from '../../service/scroll-y/scroll-y-service.service';
 
 @Component({
   selector: 'app-sidebare',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './sidebare.component.html',
   styleUrl: './sidebare.component.css'
 })
@@ -32,6 +33,21 @@ export class SidebareComponent {
   skill: boolean = false;
   project: boolean = false;
   contact: boolean = false;
+
+  lang: any = {
+    de: {
+      aboutme: 'Über mich',
+      project: 'Projekte',
+      skill: 'Fähigkeiten',
+      contact: 'Schreib mir!'
+    },
+    en: {
+      aboutme: 'About me',
+      project: 'Projects',
+      skill: 'Skills',
+      contact: 'Contact me!'
+    }
+  }
 
   constructor() {
 
@@ -78,6 +94,22 @@ export class SidebareComponent {
     this.changeUnderlineWidth()
   }
 
+  returnDarkModeClass(dark: boolean) {
+    if (dark) {
+      return '[class.active-dm]'
+    } else {
+      return '[class.active]'
+    }
+  }
+
+  darkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   markCurrentSection(x: number) {
     if (x <= 480) {
       this.aboutme = true;
@@ -88,18 +120,18 @@ export class SidebareComponent {
     }
 
     if (x >= 480) {
-      this.skill = true;
-
-      this.aboutme = false;
-      this.project = false;
-      this.contact = false;
-    }
-
-    if (x >= 1280) {
       this.project = true;
 
       this.aboutme = false;
       this.skill = false;
+      this.contact = false;
+    }
+
+    if (x >= 1280) {
+      this.skill = true;
+
+      this.aboutme = false;
+      this.project = false;
       this.contact = false;
     }
 

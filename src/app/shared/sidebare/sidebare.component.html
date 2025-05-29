@@ -2,50 +2,30 @@
     <div class="sidebare-wrapper w-full">
         <div
             class="h-[64px] top-0 border-b-border-gray dark:border-b-white border-b-[0.5px] flex justify-start items-center gap-2">
-            <span class="text-3xl font-semibold dark:text-white">anton-ivkin.de</span><img class="w-[42px] h-[42px] mb-1" src="icons/website-logo.png">
+            <span class="text-3xl font-semibold dark:text-white">anton-ivkin.de</span><img
+                class="w-[42px] h-[42px] mb-1" src="icons/website-logo.png">
         </div>
         <div id="sidebare-content-wrapper" class="mt-[48px] flex flex-col gap-[40px] laptop-height">
             <div id="sidebare-current-section"
                 class="flex flex-col items-end [&_span]:font-semibold [&_span]:text-text-inactive [&_span]:dark:border-gray">
                 <div id="current-section-wrapper"
                     class="flex flex-col items-start [&>div]:w-[120px] gap-[22px] [&_span]:text-[18px] [&_div]:cursor-pointer">
-                    @if(this.currentLang === "de"){
-                    <div [class.active]="aboutme">
-                        <span #spans>Über mich</span>
+                    <div [ngClass]="{ 'active-dm': aboutme && darkMode(), 'active' : aboutme}">
+                        <span #spans>{{ lang[this.currentLang].aboutme }}</span>
                         <div #under class="under-text"></div>
                     </div>
-                    <div [class.active]="skill">
-                        <span #spans>Projekte</span>
+                    <div [ngClass]="{ 'active-dm': project && darkMode(), 'active' : project}">
+                        <span #spans>{{ lang[this.currentLang].project }}</span>
                         <div #under class="under-text"></div>
                     </div>
-                    <div [class.active]="project">
-                        <span #spans>Fähigkeiten</span>
+                    <div [ngClass]="{ 'active-dm': skill && darkMode(), 'active' : skill}">
+                        <span #spans>{{ lang[this.currentLang].skill }}</span>
                         <div #under class="under-text"></div>
                     </div>
-                    <div [class.active]="contact">
-                        <span #spans>Schreib mir!</span>
+                    <div [ngClass]="{ 'active-dm': contact && darkMode(), 'active' : contact}">
+                        <span #spans>{{ lang[this.currentLang].contact }}</span>
                         <div #under class="under-text"></div>
                     </div>
-                    }
-
-                    @if(this.currentLang === "en"){
-                    <div [class.active]="aboutme">
-                        <span #spans>About me</span>
-                        <div #under class="under-text"></div>
-                    </div>
-                    <div [class.active]="skill">
-                        <span #spans>Projects</span>
-                        <div #under class="under-text"></div>
-                    </div>
-                    <div [class.active]="project">
-                        <span #spans>Skills</span>
-                        <div #under class="under-text"></div>
-                    </div>
-                    <div [class.active]="contact">
-                        <span #spans>Contact me</span>
-                        <div #under class="under-text"></div>
-                    </div>
-                    }
                 </div>
             </div>
             <div id="sidebare-lets-connect" class="flex flex-col items-start">
@@ -80,11 +60,11 @@
             <div class="projects-sidebar">
                 <span class="font-semibold text-[18px] dark:text-white">
                     @if(this.currentLang === "de"){
-                        Projekte
+                    Projekte
                     }
 
                     @if(this.currentLang === "en"){
-                        Projects
+                    Projects
                     }
                 </span>
                 <div id="projects-sidebar"

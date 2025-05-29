@@ -22,6 +22,11 @@
     width: 120px!important;
 }
 
+.active-dm .under-text{
+    background-color: #4fbd76;
+    width: 120px!important;
+}
+
 .active span{
     color: #2E7748;
 }

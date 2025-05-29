@@ -2,6 +2,8 @@ import { Component, inject, Inject } from '@angular/core';
 import { DIALOG_DATA, Dialog } from '@angular/cdk/dialog';
 import { FormComponent } from '../../form/form.component';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { ScreenResService } from '../../../service/screen-res/screen-res.service';
+import { ScrollYServiceService } from '../../../service/scroll-y/scroll-y-service.service';
 
 
 @Component({
@@ -11,12 +13,10 @@ import { Clipboard } from '@angular/cdk/clipboard';
   styleUrl: './dialog-sidebar-info.component.css'
 })
 
-
-
 export class DialogSidebarInfoComponent {
   private dialog = inject(Dialog)
   private clipboard = inject(Clipboard)
-
+  private scrollY = inject(ScrollYServiceService)
 
   public type: string = ''
   public currentLang: string = ''
@@ -35,6 +35,7 @@ export class DialogSidebarInfoComponent {
   close() {
     document.getElementsByClassName("animateDialog")[0].classList.remove("slideInDialog-md");
     document.getElementsByClassName("animateDialog")[0].classList.add("slideOutDialog-md");
+    this.scrollY.modalOpen = false;
     setTimeout(() => { this.dialog.closeAll(); }, 400)
   }
 

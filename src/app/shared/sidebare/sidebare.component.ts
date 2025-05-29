@@ -1,9 +1,10 @@
 import { Component, ElementRef, inject, ViewChildren, QueryList } from '@angular/core';
 import { ScreenResService } from '../../service/screen-res/screen-res.service';
 import { LanguageDecService } from '../../service/language/language-dec.service';
-import { Subscription } from 'rxjs';
-import {Dialog} from '@angular/cdk/dialog';
+import { Subscription, tap } from 'rxjs';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { DialogSidebarInfoComponent } from '../dialog/dialog-sidebar-info/dialog-sidebar-info.component';
+import { ScrollYServiceService } from '../../service/scroll-y/scroll-y-service.service';
 
 @Component({
   selector: 'app-sidebare',
@@ -12,8 +13,10 @@ import { DialogSidebarInfoComponent } from '../dialog/dialog-sidebar-info/dialog
   styleUrl: './sidebare.component.css'
 })
 export class SidebareComponent {
+  private scrollY = inject(ScrollYServiceService)
   private screenRes = inject(ScreenResService)
   private langService = inject(LanguageDecService)
+
   private dialog = inject(Dialog)
 
   langSubscription: Subscription | undefined
@@ -23,7 +26,7 @@ export class SidebareComponent {
   @ViewChildren('under') unders!: QueryList<ElementRef>;
   spanWidthCache: number[] = []
   undersIndex: number = 0;
-  underlineInit:boolean = true;
+  underlineInit: boolean = true;
 
   aboutme: boolean = false;
   skill: boolean = false;
@@ -35,9 +38,8 @@ export class SidebareComponent {
   }
 
   ngOnInit() {
-    this.screenRes.currentScrollY$.subscribe((x) => {
+    this.scrollY.currentScrollY$.subscribe((x) => {
       this.markCurrentSection(x)
-      console.log(x)
     })
 
     setTimeout(() => {
@@ -48,7 +50,7 @@ export class SidebareComponent {
 
     this.langSubscription = this.langService.lang$.subscribe(lang => {
       this.currentLang = lang
-      setTimeout(() =>{
+      setTimeout(() => {
         this.changeUnderlineWidth()
       })
     })
@@ -111,11 +113,19 @@ export class SidebareComponent {
     }
   }
 
-  openModualInfo(type:string){
+  openModualInfo(type: string) {
     const data = {
       type: type,
       currentLang: this.currentLang,
     }
-    this.dialog.open(DialogSidebarInfoComponent, {data:data, autoFocus: '__non_existing_element__', panelClass: ['slideInDialog-md','animateDialog']});
+
+    this.scrollY.modalOpen = true;
+
+    this.dialog.open(DialogSidebarInfoComponent,
+      { data: data, autoFocus: '__non_existing_element__', panelClass: ['slideInDialog-md', 'animateDialog'] })
+
+      .closed.subscribe(x => {
+        this.scrollY.modalOpen = false;
+      })
   }
 }

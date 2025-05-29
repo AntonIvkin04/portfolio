@@ -1,8 +1,5 @@
-import { Injectable, inject, OnDestroy } from '@angular/core';
-import { BehaviorSubject, startWith, debounceTime, distinctUntilChanged, Observable, Subscription, map, fromEvent, switchMap, of, takeUntil, filter } from 'rxjs';
-import { DialogInfoService } from '../dialog/dialog-info.service';
-
-
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, startWith, debounceTime, distinctUntilChanged, Observable, Subscription, map, fromEvent } from 'rxjs';
 
 interface ScreenDetails {
   max_w: number;
@@ -20,20 +17,14 @@ interface ScreenResRange {
 })
 
 export class ScreenResService {
-
-  private dialogInfoStatus = inject(DialogInfoService)
-
-  private currentScrollY = new BehaviorSubject<number>(0);
-  public currentScrollY$: Observable<number> = this.currentScrollY.asObservable();
-
   private _screenSizeW = new BehaviorSubject<number>(0);
   public screenSizeW$: number = 0;
 
   private _screenSizeH = new BehaviorSubject<number>(0);
   public screenSizeH$: number = 0;
 
-  private scrollSubscription: Subscription | undefined;
   private resizeSubscription: Subscription | undefined;
+
 
   private screenResRange: ScreenResRange = {
     "mobileScreen": {
@@ -73,50 +64,21 @@ export class ScreenResService {
   public device$: Observable<string> = this._device.asObservable();
 
   constructor() {
-    this.subscribeScroll()
     this.initScreenSize()
   }
 
-  subscribeScroll() {
-    const scrollEvent = fromEvent(window, 'scroll')
-      .pipe(
-        debounceTime(1),
-        map(() => window.scrollY),
-        distinctUntilChanged()
-      );
-
-      const isDialogOpen$ = this.dialogInfoStatus.infoDialog$
-
-      this.scrollSubscription = isDialogOpen$
-      .pipe(
-        switchMap(isDialogOpen =>{
-          if(isDialogOpen){
-             return of(this.currentScrollY.getValue());
-          }else{
-            return scrollEvent.pipe(
-              takeUntil(this.dialogInfoStatus.infoDialog$.pipe(filter(status => status === true)))
-            )
-          }
-        })
-      ).subscribe(scrollY => {
-        this.currentScrollY.next(scrollY);
-      })
-  }
-
   initScreenSize() {
-         this.resizeSubscription = fromEvent(window, 'resize')
+    this.resizeSubscription = fromEvent(window, 'resize')
       .pipe(
-        debounceTime(100), // Nur nach einer Pause der Größenänderung aktualisieren
+        debounceTime(100),
         map(() => ({ w: window.screen.width, h: window.screen.height })),
-        startWith({ w: window.screen.width, h: window.screen.height }), // Emittiert sofort die aktuelle Fenstergröße
-        distinctUntilChanged((prev, curr) => prev.w === curr.w && prev.h === curr.h) // Nur bei tatsächlicher Änderung
+        startWith({ w: window.screen.width, h: window.screen.height }),
+        distinctUntilChanged((prev, curr) => prev.w === curr.w && prev.h === curr.h)
       )
-         .subscribe(({ w, h }) => {
-        // Aktualisiere die internen BehaviorSubjects für Breite und Höhe
+      .subscribe(({ w, h }) => {
         this._screenSizeW.next(w);
         this._screenSizeH.next(h);
 
-        // BESTIMME UND SETZE DEN GERÄTETYP ERST HIER, NACHDEM DIE GRÖSSEN BEKANNT SIND
         const determinedDevice = this.returnDevice(w, h);
         this._device.next(determinedDevice);
       });
@@ -139,17 +101,6 @@ export class ScreenResService {
   returnStringDevice(w: number, h: number, device: string) {
     let screenDetails = this.screenResRange[device]
 
-    if (device === "mobileScreen") {
-      console.log(w <= screenDetails.max_w)
-      console.log(w >= screenDetails.min_w)
-
-      console.log(h >= screenDetails.min_h)
-      console.log(h <= screenDetails.max_h)
-
-      console.log(w)
-      console.log(screenDetails.max_w)
-    }
-
     if (w <= screenDetails.max_w && w >= screenDetails.min_w &&
       h <= screenDetails.max_h && h >= screenDetails.min_h) {
       return true;
@@ -159,11 +110,7 @@ export class ScreenResService {
   }
 
   ngOnDestroy() {
-    if (this.scrollSubscription) {
-      this.scrollSubscription.unsubscribe();
-    }
-
-    if(this.resizeSubscription){
+    if (this.resizeSubscription) {
       this.resizeSubscription.unsubscribe();
     }
   }

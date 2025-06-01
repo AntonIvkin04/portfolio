@@ -1,56 +1,16 @@
 <section class="flex flex-col ">
     <span class="text-left text-[38px] mb-[48px] dark:text-white">Projekte</span>
-    <!-- <div
-        class="mb-6 flex flex-row justify-end gap-[18px] [&_span]:px-2 [&_span]:py-1 [&_span]:rounded-xl [&_span]:hover:bg-green [&_span]:cursor-pointer [&_span]:border-[1px] [&_span]:border-green [&_span]:text-green [&_span]:hover:text-white [&_span]:transition-all">
-        <span>2025</span>
-        <span>2024</span>
-        <span>2023</span>
-    </div> -->
-    <div class="py-8 px-1 rounded-xl bg-side-bar-light dark:bg-side-bar-dark flex flex-col items-center ">
-        <div class="flex flex-row justify-center">
-            <div class="flex flex-col items-center justify-center px-2 rotate-180">
-            </div>
-            <div id="project-wrapper" class="grid grid-cols-2 grid-rows-2 gap-[22px] h-[100%]">
-
-                @for (item of project.list; track $index; let i = $index) {
-                <div
-                    class="w-full h-[222px] shadow-md inset-shadow-xs rounded-xl border-green transition-[scale] hover:scale-98 select-none bg-white dark:bg-[#4e4e4e]">
-                    <div class="p-[12px] w-full h-full flex flex-col justify-between">
-                        <div>
-                            <div>
-                                <div class="flex flex-row justify-between items-center">
-                                    <span class="text-[18px] font-semibold dark:text-white">{{ project.list[i].name
-                                        }}</span>
-                                    <img class="w-[28px] h-[28px]" src="{{project.list[i].icon}}">
-                                </div>
-                                <span class="text-[14px] dark:text-white">{{ project.list[i].date }}</span>
-                            </div>
-                            <hr class="w-[100%] h-[2px] border-0 bg-border-gray mt-[12px] mb-[12px]">
-                            <span class="text-text-gray dark:text-white">
-
-                                @if(this.currentLang === "de"){
-                                {{ project.list[i].description_de }}
-                                }
-
-                                @if(this.currentLang === "en"){
-                                {{ project.list[i].description_en }}
-                                }
-
-                            </span>
-                        </div>
-                        <div id="button-wrapper" class="flex flex-row gap-[16px] mt-[12px]">
-                            <button routerLink="{{ project.list[i].path }}"
-                                class="text-green dark:text-green-dm border-green dark:border-green-dm border-[1px] px-2 py-1 rounded-xl cursor-pointer hover:bg-green hover:text-white transition-all">Demo
-                            </button>
-                            <button
-                                class=" text-green dark:text-green-dm border-green dark:border-green-dm border-[1px] px-2 py-1 rounded-xl cursor-pointer hover:bg-green hover:text-white transition-all ">GitHub
-                            </button>
-                        </div>
-                    </div>
+    <div class="bg-side-bar-light rounded-b-xl dark:bg-side-bar-dark flex flex-col items-center ">
+        <div class="flex flex-row justify-center w-full">
+            <div id="project-wrapper" class="flex flex-col h-[100%] w-full">
+                <div class="flex flex-row items-end w-full">
+                    @for (item of project.list; track $index) {
+                    <div [id]="project.list[$index].id" class="text-2xl dark:text-white py-4 px-4 flex flex-row gap-2 opacity-50 hover:cursor-pointer
+                    hover:opacity-100 hover:dark:bg-[#4d4d4d] hover:bg-[#f2f2f2] transition-opacity
+                    has-open:bg-green" (click)="this.setProjectActive.set($index)">{{ project.list[$index].name }} <img src="{{ project.list[$index].icon }}"></div>
+                    }
                 </div>
-                }
-            </div>
-            <div class="flex flex-col items-center justify-center px-2">
+                <app-project [currentProjectIndex]="setProjectActive()" class="px-4 py-8 rounded-b-xl bg-[#e6e6e6] dark:bg-[#595959]"></app-project>
             </div>
         </div>
     </div>

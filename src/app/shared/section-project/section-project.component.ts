@@ -1,12 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
+import { ProjectComponent } from './project/project/project.component';
 
 
 @Component({
   selector: 'app-section-project',
-  imports: [RouterModule],
+  imports: [RouterModule, ProjectComponent],
   templateUrl: './section-project.component.html',
   styleUrl: './section-project.component.css'
 })
@@ -15,77 +16,80 @@ export class SectionProjectComponent {
   private langService = inject(LanguageDecService)
   langSubscription: Subscription | undefined
 
-  currentLang:string = '';
+  setProjectActive = signal<number>(0)
+
+  currentLang: string = '';
 
   project: {
     list: {
       name: string,
-      description_de: string,
-      description_en: string,
       icon: string,
-      date: string,
-      path: string,
+      id: string,
+      active: boolean,
     }[]
   } = {
       list: [
         {
-          name: "Kochwelt",
-          description_de: "Kochwelt ist ein Projekt welches eine Daily-Rezept Seite simuliert.",
-          description_en: "Kochwelt is a project that simulates a daily recipe website.",
-          icon: "/img/fav-icon-kochwelt.png",
-          date: "2022",
-          path: ""
-        },
-        {
           name: "Yurei's Wish",
-          description_de: "Yurei's Wish ist ein Canva-Browser Game mit einem Level.",
-          description_en: "Yurei's Wish is a Canva browser game with one level",
           icon: "/img/yureis-wish-icon.png",
-          date: "2022",
-          path: ""
-        },
-        {
-          name: "PokeAPI",
-          description_de: "Bei PokeAPI werden Pokemons mithilfer einer API angezeigt.",
-          description_en: "With PokeAPI, Pokémon are displayed using an API.",
-          icon: "/img/pokeapi-icon.png",
-          date: "2022",
-          path: ""
+          id: 'yurei',
+          active: true,
         },
         {
           name: "Join",
-          description_de: "Ein Kanbanboard angebunden an einer Firebase Datenbank.",
-          description_en: "A Kanban board connected to a Firebase database.",
           icon: "/img/favicon_logo_join.png",
-          date: "2022",
-          path: ""
-        },
-        {
-          name: "Bestellapp",
-          description_de: "Eine simulierte Lieferbestellseite.",
-          description_en: "A simulated delivery order page.",
-          icon: "/img/favicon-bestellapp.png",
-          date: "2022",
-          path: ""
-        },
-        {
-          name: "Bookstore",
-          description_de: "Eine einfache Webseite die Bücher anzeigt.",
-          description_en: "A simple website that displays books.",
-          icon: "/img/favicon-bookstore.png",
-          date: "2022",
-          path: ""
+          id: 'join',
+          active: false,
         },
       ]
     };
 
-    ngOnInit(){
-      this.langSubscription = this.langService.lang$.subscribe(lang => {
-      this.currentLang = lang;
-      })
-    }
+  setActive = effect(() => {
+    this.removeActive(this.setProjectActive())
+  })
 
-    ngOnDestroy(){
-      this.langSubscription?.unsubscribe()
+  ngOnInit() {
+    this.langSubscription = this.langService.lang$.subscribe(lang => {
+      this.currentLang = lang;
+    });
+  }
+
+  ngAfterViewInit() {
+    this.checkActive()
+  }
+
+  removeActive(currentId:number) {
+    for (let index = 0; index < this.project.list.length; index++) {
+      const element = this.project.list[index];
+      if (index === currentId) {
+        element.active = true
+      } else {
+        element.active = false
+      }
     }
+    this.checkActive()
+  }
+
+  checkActive() {
+    for (let index = 0; index < this.project.list.length; index++) {
+      const element = this.project.list[index];
+      if (element.active === true) {
+        document.getElementById(this.project.list[index].id)?.classList.add(`active-${this.darkMode()}`)
+      } else {
+        document.getElementById(this.project.list[index].id)?.classList.remove(`active-${this.darkMode()}`)
+      }
+    }
+  }
+
+  ngOnDestroy() {
+    this.langSubscription?.unsubscribe()
+  }
+
+    darkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      return 'dm'
+    } else {
+      return 'lm'
+    }
+  }
 }

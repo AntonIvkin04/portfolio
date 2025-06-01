@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { SectionHeroComponent } from '../../shared/section-hero/section-hero.component';
 import { SectionProjectComponent } from '../../shared/section-project/section-project.component';
 import { SectionSkillsComponent } from '../../shared/section-skills/section-skills.component';
 import { SectionContactMeComponent } from '../../shared/section-contact-me/section-contact-me.component';
+import { ScrollYServiceService } from '../../service/scroll-y/scroll-y-service.service';
 
 
 @Component({
@@ -12,18 +13,28 @@ import { SectionContactMeComponent } from '../../shared/section-contact-me/secti
   styleUrl: './main-content.component.css'
 })
 
+
+
 export class MainContentComponent {
-  onScroll(event: Event): void {
-    const element = event.target as HTMLElement;
-    console.log('Element gescrollt!', element.scrollTop, element.scrollHeight, element.clientHeight);
+  public scrollY = inject(ScrollYServiceService)
 
-    // Beispiel: Funktion aufrufen, wenn der Nutzer das Ende erreicht hat
-    if (element.scrollTop + element.clientHeight >= element.scrollHeight) {
-      console.log('Ende des Containers erreicht!');
-    }
+  @ViewChild('about', { read: ElementRef }) about!: ElementRef
+  @ViewChild('project', { read: ElementRef }) project!: ElementRef
+  @ViewChild('skill', { read: ElementRef }) skill!: ElementRef
+  @ViewChild('contact', { read: ElementRef }) contact!: ElementRef
+
+  constructor() {
+
+    // this.scrollY.observeElement(this.about, 'about')
+    // this.scrollY.observeElement(this.about, 'about')
   }
 
-  test(){
-    console.log("test")
+  ngAfterViewInit() {
+    console.log(this.about.nativeElement)
+    // this.scrollY.observeElement(this.about, 'about')
+    // this.scrollY.observeElement(this.project, 'project')
+    // this.scrollY.observeElement(this.skill, 'skill')
+    // this.scrollY.observeElement(this.contact, 'contact')
   }
+
 }

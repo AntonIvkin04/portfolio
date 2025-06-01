@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import { BehaviorSubject, Observable, map, tap, fromEvent, mergeMap, iif, of, Subscription } from 'rxjs';
 
 @Injectable({
@@ -13,11 +13,40 @@ export class ScrollYServiceService {
 
   private scrollSubscription: Subscription | undefined;
 
+  
+  aboutme: boolean = false;
+  skill: boolean = false;
+  project: boolean = false;
+  contact: boolean = false;
+
   public modalOpen: boolean = false;
 
   constructor() {
     this.subscribeScroll()
   }
+
+  // observeElement(element: ElementRef, elementid:string) {
+
+  //   const observer = new IntersectionObserver(entries => {
+
+  //     entries.forEach(entry => {
+
+  //       if (entry.isIntersecting) {
+
+  //         console.log(true + elementid)
+  //         console.log(entry.intersectionRatio)
+
+  //       } else {
+  //         console.log(false + elementid)
+  //       }
+
+  //     });
+
+  //   }, { threshold: 0.40 });
+
+  //   observer.observe(element.nativeElement);
+
+  // }
 
   subscribeScroll() {
     this.scrollSubscription = fromEvent(window, 'scroll').pipe(
@@ -35,7 +64,6 @@ export class ScrollYServiceService {
         )
       )
     ).subscribe(x => {
-      console.log(x)
       this.currentScrollY.next(x)
     })
   }

@@ -14,11 +14,12 @@ import { ScrollYServiceService } from '../../service/scroll-y/scroll-y-service.s
   styleUrl: './sidebare.component.css'
 })
 export class SidebareComponent {
-  private scrollY = inject(ScrollYServiceService)
+  public scrollY = inject(ScrollYServiceService)
   private screenRes = inject(ScreenResService)
   private langService = inject(LanguageDecService)
 
   private dialog = inject(Dialog)
+  dialogSubscription: Subscription | undefined
 
   langSubscription: Subscription | undefined
   currentLang: string = '';
@@ -28,11 +29,6 @@ export class SidebareComponent {
   spanWidthCache: number[] = []
   undersIndex: number = 0;
   underlineInit: boolean = true;
-
-  aboutme: boolean = false;
-  skill: boolean = false;
-  project: boolean = false;
-  contact: boolean = false;
 
   lang: any = {
     de: {
@@ -49,10 +45,17 @@ export class SidebareComponent {
     }
   }
 
+  cacheWindowHeight:number = 0;
+    
+  aboutme: boolean = false;
+  skill: boolean = false;
+  project: boolean = false;
+  contact: boolean = false;
+
   constructor() {
 
   }
-
+  
   ngOnInit() {
     this.scrollY.currentScrollY$.subscribe((x) => {
       this.markCurrentSection(x)
@@ -74,6 +77,7 @@ export class SidebareComponent {
 
   ngOnDestroy() {
     this.langSubscription?.unsubscribe()
+    this.dialogSubscription?.unsubscribe()
   }
 
   changeUnderlineWidth() {
@@ -111,39 +115,45 @@ export class SidebareComponent {
   }
 
   markCurrentSection(x: number) {
-    if (x <= 480) {
-      this.aboutme = true;
+  const maxScrollY = document.documentElement.scrollHeight;
+  let scrollPercentage = 0;
 
-      this.skill = false;
-      this.project = false;
-      this.contact = false;
-    }
-
-    if (x >= 480) {
-      this.project = true;
-
-      this.aboutme = false;
-      this.skill = false;
-      this.contact = false;
-    }
-
-    if (x >= 1280) {
-      this.skill = true;
-
-      this.aboutme = false;
-      this.project = false;
-      this.contact = false;
-    }
-
-
-    if (x >= 1980) {
-      this.contact = true;
-
-      this.project = false;
-      this.skill = false;
-      this.aboutme = false;
-    }
+  if(!this.scrollY.modalOpen){
+    this.cacheWindowHeight = maxScrollY
   }
+
+  if(this.scrollY.modalOpen){
+     scrollPercentage = (x / this.cacheWindowHeight) * 100;
+  }else{
+     scrollPercentage = (x / maxScrollY) * 100;
+  }
+  
+  const aboutMeEndPercentage = 20;
+  const projectEndPercentage = 40;
+  const skillEndPercentage = 60;
+
+  if (scrollPercentage >= 0 && scrollPercentage < aboutMeEndPercentage) {
+    this.aboutme = true;
+    this.skill = false;
+    this.project = false;
+    this.contact = false;
+  } else if (scrollPercentage >= aboutMeEndPercentage && scrollPercentage < projectEndPercentage) {
+    this.project = true;
+    this.aboutme = false;
+    this.skill = false;
+    this.contact = false;
+  } else if (scrollPercentage >= projectEndPercentage && scrollPercentage < skillEndPercentage) {
+    this.skill = true;
+    this.aboutme = false;
+    this.project = false;
+    this.contact = false;
+  } else if (scrollPercentage >= skillEndPercentage) {
+    this.contact = true;
+    this.project = false;
+    this.skill = false;
+    this.aboutme = false;
+  }
+}
 
   openModualInfo(type: string) {
     const data = {
@@ -153,7 +163,7 @@ export class SidebareComponent {
 
     this.scrollY.modalOpen = true;
 
-    this.dialog.open(DialogSidebarInfoComponent,
+    this.dialogSubscription = this.dialog.open(DialogSidebarInfoComponent,
       { data: data, autoFocus: '__non_existing_element__', panelClass: ['slideInDialog-md', 'animateDialog'] })
 
       .closed.subscribe(x => {

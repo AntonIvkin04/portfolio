@@ -1,0 +1,9 @@
+.active-lm {
+    background-color: #e6e6e6!important;
+    opacity: 1!important;
+    cursor: default;
+}
+
+.active-dm {
+    background-color: #595959;
+}

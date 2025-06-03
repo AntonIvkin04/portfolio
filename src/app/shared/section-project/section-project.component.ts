@@ -1,4 +1,5 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
@@ -7,7 +8,7 @@ import { ProjectComponent } from './project/project/project.component';
 
 @Component({
   selector: 'app-section-project',
-  imports: [RouterModule, ProjectComponent],
+  imports: [RouterModule, ProjectComponent, CommonModule],
   templateUrl: './section-project.component.html',
   styleUrl: './section-project.component.css'
 })
@@ -44,9 +45,11 @@ export class SectionProjectComponent {
       ]
     };
 
-  setActive = effect(() => {
-    this.removeActive(this.setProjectActive())
-  })
+  constructor() {
+    effect(() => {
+      this.removeActive(this.setProjectActive())
+    })
+  }
 
   ngOnInit() {
     this.langSubscription = this.langService.lang$.subscribe(lang => {
@@ -54,11 +57,7 @@ export class SectionProjectComponent {
     });
   }
 
-  ngAfterViewInit() {
-    this.checkActive()
-  }
-
-  removeActive(currentId:number) {
+  removeActive(currentId: number) {
     for (let index = 0; index < this.project.list.length; index++) {
       const element = this.project.list[index];
       if (index === currentId) {
@@ -67,29 +66,17 @@ export class SectionProjectComponent {
         element.active = false
       }
     }
-    this.checkActive()
-  }
-
-  checkActive() {
-    for (let index = 0; index < this.project.list.length; index++) {
-      const element = this.project.list[index];
-      if (element.active === true) {
-        document.getElementById(this.project.list[index].id)?.classList.add(`active-${this.darkMode()}`)
-      } else {
-        document.getElementById(this.project.list[index].id)?.classList.remove(`active-${this.darkMode()}`)
-      }
-    }
   }
 
   ngOnDestroy() {
     this.langSubscription?.unsubscribe()
   }
 
-    darkMode() {
+  darkMode() {
     if (document.documentElement.classList.contains('dark')) {
-      return 'dm'
+      return true
     } else {
-      return 'lm'
+      return false
     }
   }
 }

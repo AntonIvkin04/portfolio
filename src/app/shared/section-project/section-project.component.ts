@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
 import { ProjectComponent } from './project/project/project.component';
+import { Language } from '../types';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class SectionProjectComponent {
 
   setProjectActive = signal<number>(0)
 
-  currentLang: string = '';
+  currentLang:Language = "de";
 
   project: {
     list: {

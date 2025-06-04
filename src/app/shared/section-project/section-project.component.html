@@ -10,7 +10,7 @@
                     has-open:bg-green" (click)="this.setProjectActive.set($index)" [ngClass]="{'active-dm': project.list[$index].active && darkMode(), 'active' : project.list[$index].active}" >{{ project.list[$index].name }} <img src="{{ project.list[$index].icon }}" ></div>
                     }
                 </div>
-                <app-project [currentProjectIndex]="setProjectActive()" class="px-4 py-8 rounded-b-xl bg-[#e6e6e6] dark:bg-[#595959]"></app-project>
+                <app-project [currentLang]="this.currentLang" [currentProjectIndex]="setProjectActive()" class="px-4 py-8 rounded-b-xl bg-[#e6e6e6] dark:bg-[#595959]"></app-project>
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
+import { Language } from '../types';
 
 @Component({
   selector: 'app-navbar',
@@ -67,7 +68,7 @@ export class NavbarComponent {
     }
   }
 
-  onLangChange(lang_string:string){
+  onLangChange(lang_string:Language){
     this.langservice.setLanguage(lang_string)
   }
 

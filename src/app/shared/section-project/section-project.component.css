@@ -1,11 +1,12 @@
 .active {
-    background-color: #e6e6e6 !important;
+    /* background-color: #e6e6e6 !important; */
     opacity: 1 !important;
     cursor: default;
+    background-color: transparent!important;
 }
 
 .active-dm {
-    background-color: #595959!important;
+    /* background-color: #595959!important; */
     opacity: 1 !important;
     cursor: default;
 }

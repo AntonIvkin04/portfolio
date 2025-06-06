@@ -81,4 +81,19 @@ html {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  
+}
+
+@keyframes switch {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.animateswitch{
+    animation: switch 450ms ease-in;
 }

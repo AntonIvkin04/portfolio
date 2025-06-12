@@ -6,7 +6,7 @@
 @theme {
   --breakpoint-xl: 1440px;
   --color-side-bar-light: #F5F5F5;
-  --color-side-bar-dark: #404040;
+  --color-side-bar-dark: #1F1F1F;
   --color-border-gray: rgba(95, 95, 95, 0.5);
   --color-border-gray-dm: #D3D3D3;
   --color-text-inactive: rgba(130, 130, 130, 0.5);
@@ -33,6 +33,16 @@
 @font-face {
   font-family: "Discord";
   src: url(/font/gg-sans-Semibold.ttf );
+}
+
+@font-face {
+  font-family: "Anton";
+  src: url(/font/Anton-Regular.ttf);
+}
+
+@font-face {
+  font-family: "hero";
+  src: url(/font/Oswald-Light.ttf);
 }
 
 @keyframes animation-scroll-left {

@@ -19,6 +19,7 @@ interface ScreenResRange {
 export class ScreenResService {
   private _screenSizeW = new BehaviorSubject<number>(0);
   public screenSizeW$: number = 0;
+  public screenW$: Observable<number> = this._screenSizeW.asObservable();
 
   private _screenSizeH = new BehaviorSubject<number>(0);
   public screenSizeH$: number = 0;

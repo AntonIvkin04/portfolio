@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, InputSignal, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, computed, effect, input, InputSignal, ViewChildren, QueryList, ElementRef, ViewChild } from '@angular/core';
 import { Language } from '../../../types';
 
 @Component({
@@ -13,9 +13,12 @@ export class ProjectComponent {
 
   @ViewChildren('textcontainer') textcontainers!: QueryList<ElementRef>;
   @ViewChildren('articels') articels!: QueryList<ElementRef>;
+  @ViewChild('techicons') techicons!: ElementRef
 
   setPulesAnimationOnChange = effect(() => {
     this.currentProjectIndex();
+
+    this.techicons.nativeElement.classList.add('animateswitch')
 
     this.articels?.forEach((e) => {
       e.nativeElement.classList.add('animateswitch')
@@ -24,6 +27,7 @@ export class ProjectComponent {
       e.nativeElement.classList.remove('animateswitch')
       }, 450)
     })
+    setTimeout(() => this.techicons.nativeElement.classList.remove('animateswitch'), 450)
   })
 
   currentProject = computed(() => {
@@ -45,7 +49,7 @@ export class ProjectComponent {
       },
       demo_link: '',
       github_link: '',
-      tech_stack: ['html']
+      tech_stack: ['html','javascript']
     } :
       this.currentProjectIndex() === 1 ? {
         name: 'Join',
@@ -65,7 +69,7 @@ export class ProjectComponent {
         },
         demo_link: '',
         github_link: '',
-        tech_stack: ['html']
+        tech_stack: ['html','css','javascript']
       } :
         {
           name: '',
@@ -117,6 +121,10 @@ export class ProjectComponent {
     });
   }
 
+
+  getTechSvgSrc(techicon:string){
+    return `icons/${techicon}.svg`
+  }
 
   getLocalizedObj(objKey: 'description' | 'organisation' | 'learn_goal'): string {
     const lang = this.currentLang()

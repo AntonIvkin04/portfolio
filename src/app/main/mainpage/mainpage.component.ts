@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { MainContentComponent } from '../main-content/main-content.component';
 import { SidebareComponent } from '../../shared/sidebare/sidebare.component';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
+import { ScreenResService } from '../../service/screen-res/screen-res.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mainpage',
@@ -11,22 +13,32 @@ import { FooterComponent } from '../../shared/footer/footer.component';
   styleUrl: './mainpage.component.css'
 })
 export class MainpageComponent {
+  private screenService = inject(ScreenResService)
+  private screenWsubscription: Subscription | undefined;
 
-  constructor(){
+  @ViewChild('sidebare', { read: ElementRef }) sidebare!: ElementRef;
+
+  constructor() {
+
   }
 
-  test(){
-    console.log('test')
+  ngAfterViewInit() {
+    this.subscribeWindowWidth()
   }
 
-   onScroll(event: Event): void {
-    const element = event.target as HTMLElement;
-    console.log('Element gescrollt!', element.scrollTop, element.scrollHeight, element.clientHeight);
+  subscribeWindowWidth() {
+    this.screenWsubscription = this.screenService.screenW$.subscribe((w) => {
+      if (w < 1141) {
+        this.sidebare.nativeElement.classList.add('sidebar-animation-back')
+        this.sidebare.nativeElement.classList.remove('sidebar-animation-forward')
+      }
 
-    // Beispiel: Funktion aufrufen, wenn der Nutzer das Ende erreicht hat
-    if (element.scrollTop + element.clientHeight >= element.scrollHeight) {
-      console.log('Ende des Containers erreicht!');
-    }
+      if(w > 1141){
+        this.sidebare.nativeElement.classList.remove('sidebar-animation-back')
+        this.sidebare.nativeElement.classList.add('sidebar-animation-forward')
+      }
+    })
   }
-  }
+
+}
 

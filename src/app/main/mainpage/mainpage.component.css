@@ -1,13 +1,54 @@
 @import "tailwindcss";
 
-.costum-margin-main-page{
+.costum-margin-main-page {
     margin-left: calc(50vw - var(--layout) / 2 + var(--sidebar));
     margin-right: calc(50vw - var(--layout) / 2);
 }
 
 @media (max-width: 1482px) {
-    .costum-margin-main-page{
+    .costum-margin-main-page {
         margin-left: calc(var(--sidebar) + 22px);
         margin-right: unset;
+    }
+}
+
+.sidebar-animation-back {
+    animation: sidebar-back 250ms ease-in forwards;
+}
+
+.sidebar-animation-forward {
+    animation: sidebar-forward 250ms ease-out forwards;
+}
+
+@media (max-width: 1140px) {
+
+    .costum-margin-main-page {
+        margin-left: 0;
+    }
+}
+
+@keyframes sidebar-back {
+    0% {
+        transform: translateX(0px);
+    }
+
+    99% {
+        transform: translateX(-350px);
+    }
+
+    100% {
+        visibility: hidden;
+        transform: translateX(-400px);
+    }
+}
+
+@keyframes sidebar-forward {
+    0% {
+        visibility: visible;
+        transform: translateX(-400px);
+    }
+
+    100% {
+        transform: translateX(0px);
     }
 }

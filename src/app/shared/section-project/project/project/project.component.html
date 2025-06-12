@@ -3,9 +3,9 @@
         class="flex flex-col items-center justify-center bg-side-bar-light dark:bg-side-bar-dark rounded-2xl shadow-2xs">
         <img src={{currentProject().demo_pic}} class="px-4 py-4 rounded-4xl">
     </div>
-    <div class="flex flex-row gap-[22px]">
+    <div #techicons class="flex flex-row gap-[22px]">
         @for(item of currentProject().tech_stack; track $index){
-       
+            <img src={{this.getTechSvgSrc(item)}} width="64px" height="64px">
         }
     </div>
     <div class="flex flex-col 
@@ -45,10 +45,10 @@
         <button class="outline-2 group outline-green text-green px-2 py-1 text-xl rounded-xl bg-side-bar-light flex flex-row gap-2 items-center
             hover:scale-110
             transition-[scale]
-            outline-green-dm
+            dark:outline-green-dm
             cursor-pointer
             dark:bg-side-bar-dark
-            text-green-dm
+            dark:text-green-dm
             ">GitHub
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -60,11 +60,11 @@
         </button>
         <button class="outline-2 outline-green text-green px-2 py-1 text-xl rounded-xl bg-side-bar-light flex flex-row gap-2 items-center
             cursor-pointer
-            transition-[color,background-color,scale]
+            transition-[scale]
             hover:scale-110
             dark:bg-side-bar-dark
-            text-green-dm
-            outline-green-dm
+            dark:text-green-dm
+            dark:outline-green-dm
             ">Demo
             <div class="[&_svg]:fill-green [&_svg]:dark:fill-green-dm">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"

@@ -1,30 +1,38 @@
 <section id="about-me" class="flex flex-col gap-[56px] items-center">
-    <div id="about-me-wrapper" class="flex flex-1/2 items-center gap-[24px] justify-between select-none">
-        <div class="relative h-[354px]">
-            <svg width="384" height="354" viewBox="0 0 384 354" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div id="about-me-wrapper" class="flex flex-1/2 items-center gap-[32px] justify-between select-none about-me">
+        <div class="relative background-hero-pic h-[314px] ">
+            <svg class="background-hero-pic" width="342" height="314" viewBox="0 0 384 354" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M85.9373 353.9C51.5536 331.01 25.4223 297.604 11.4129 258.631C-2.59653 219.657 -3.73906 177.187 8.15448 137.51C20.048 97.8326 44.3452 63.0581 77.4481 38.3358C110.551 13.6135 150.699 0.257836 191.948 0.246589C233.197 0.235342 273.352 13.5691 306.468 38.2734C339.585 62.9776 363.9 97.7388 375.815 137.409C387.73 177.08 386.611 219.551 372.622 258.532C358.634 297.514 332.521 330.933 298.15 353.842L296.444 351.259C330.262 328.718 355.956 295.836 369.72 257.481C383.483 219.126 384.585 177.338 372.861 138.305C361.138 99.2718 337.213 65.0693 304.629 40.7621C272.045 16.4549 232.534 3.33539 191.949 3.34646C151.363 3.35752 111.86 16.4985 79.2891 40.8235C46.7183 65.1485 22.8116 99.3641 11.1092 138.403C-0.593193 177.443 0.530972 219.23 14.3152 257.578C28.0995 295.925 53.8108 328.794 87.642 351.316L85.9373 353.9Z"
                     fill="#2E7748" fill-opacity="0.5" />
             </svg>
 
-            <img class="absolute top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] h-[354px] w-[384px]"
-                src="img/test-pic.png">
+            <!-- <img class="absolute hero-pic top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] h-[314px] w-[342px]"
+                src="img/test-pic.png"> -->
         </div>
-        <div class="flex items-center justify-center w-[50%] dark:text-white">
+        <div class="flex items-center justify-center dark:text-white text-text-gray flex-col">
+
             @if(this.currentLang === "de"){
-            <span class="text-center font-semibold text-[64px] w-[384px] leading-[77px]">Hi, Ich bin <span
-                    class="text-green dark:text-green-dm">Anton</span> und<br> ein Frontend Entwickler!</span>
+            <div appHeroAnimation>Hi, ich bin</div>
+            <div appHeroAnimation>Anton</div>
+            <div appHeroAnimation>und ein</div>
+            <div appHeroAnimation>Frontend</div>
+            <div appHeroAnimation>Entwickler!</div>
             }
 
             @if(this.currentLang === "en"){
-            <span class="text-center font-semibold text-[64px] w-[384px] leading-[77px]">Hi, I'm <span
-                    class="text-green dark:text-green-dm">Anton</span> and<br> I'm a Frontend Developer!</span>
+            <div appHeroAnimation>Hi, I'm</div>
+            <div appHeroAnimation>Anton</div>
+            <div appHeroAnimation>and I'm a</div>
+            <div appHeroAnimation>Frontend</div>
+            <div appHeroAnimation>Developer!</div>
             }
         </div>
     </div>
     <div id="short-info-wrapper" class="flex flex-row justify-center">
         <div
-            class="flex flex-row gap-[54px] bg-side-bar-light dark:bg-side-bar-dark inset-shadow-2xs shadow-2xs p-8 rounded-xl [&_span]:dark:text-green-dm">
+            class="flex flex-row gap-[54px] bg-side-bar-light dark:bg-side-bar-dark inset-shadow-2xs shadow-2xs p-8 rounded-xl [&_span]:dark:text-green-dm about-me-icons">
             <div class="flex flex-col items-center gap-[22px]">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"

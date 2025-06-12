@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
+import { HeroAnimationDirective } from '../../directives/hero-animation.directive';
 
 @Component({
   selector: 'app-section-hero',
-  imports: [],
+  imports: [HeroAnimationDirective],
   templateUrl: './section-hero.component.html',
   styleUrl: './section-hero.component.css'
 })

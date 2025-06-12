@@ -12,5 +12,11 @@
 .icon svg{
     width: 24px;
     height: 24px;
-}   
+}  
+
+@media (max-width: 1140px) {
+    .padding-navbar{
+        padding-left: 22px;
+    }
+}
 

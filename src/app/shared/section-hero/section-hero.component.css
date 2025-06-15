@@ -12,10 +12,9 @@
 }
 
 
-
 .text-animation {
     display: inline-block;
-    font-family: "Anton";
+    font-family: "hero";
     font-size: 64px;
     display: inline-block;
     height: fit-content;
@@ -28,4 +27,18 @@
     color: green;
     transform: translateY(-6px);
     transition: transform 75ms ease-in;
+}
+
+.text-opacity{
+    animation: opacity 75ms forwards linear;
+}
+
+@keyframes opacity {
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 100;
+    }
 }

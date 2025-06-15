@@ -1,0 +1,14 @@
+<div class="flex flex-col">
+    <span class="text-left text-[38px] mb-[48px] dark:text-white">Über mich</span>
+    <article class="text-text-gray text-xl dark:text-white">
+
+        @if(this.currentLang === "de"){
+        {{ texts.de.about }}
+        }
+
+        @if(this.currentLang === "en"){
+        {{ texts.en.about }}
+        }
+
+    </article>
+</div>

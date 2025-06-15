@@ -4,11 +4,12 @@ import { SectionProjectComponent } from '../../shared/section-project/section-pr
 import { SectionSkillsComponent } from '../../shared/section-skills/section-skills.component';
 import { SectionContactMeComponent } from '../../shared/section-contact-me/section-contact-me.component';
 import { ScrollYServiceService } from '../../service/scroll-y/scroll-y-service.service';
+import { SectionAboutMeComponent } from '../../shared/section-about-me/section-about-me.component';
 
 
 @Component({
   selector: 'app-main-content',
-  imports: [SectionHeroComponent, SectionProjectComponent, SectionSkillsComponent, SectionContactMeComponent],
+  imports: [SectionHeroComponent, SectionProjectComponent, SectionSkillsComponent, SectionContactMeComponent, SectionAboutMeComponent],
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.css'
 })

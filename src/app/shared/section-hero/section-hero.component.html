@@ -1,6 +1,7 @@
 <section id="about-me" class="flex flex-col gap-[56px] items-center">
-    <div id="about-me-wrapper" class="flex flex-1/2 items-center gap-[32px] justify-between select-none about-me">
-        <div class="relative background-hero-pic h-[314px] ">
+    <div id="about-me-wrapper"
+        class="flex flex-1/2 items-center flex-col gap-[48px] justify-between select-none about-me w-full h-full relative">
+        <!-- <div class="relative background-hero-pic h-[314px] ">
             <svg class="background-hero-pic" width="342" height="314" viewBox="0 0 384 354" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -8,31 +9,97 @@
                     fill="#2E7748" fill-opacity="0.5" />
             </svg>
 
-            <!-- <img class="absolute hero-pic top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%] h-[314px] w-[342px]"
-                src="img/test-pic.png"> -->
+            <img class="absolute hero-pic top-[50%] left-[50%] -translate-y-[50%] -translate-x-[50%]"
+                src="img/hero-pic.png">
+        </div> -->
+
+        <img class="w-[40%] top-72 right-2 absolute outline-green outline-6 hover:outline-12 transition-[outline,shadow] cursor-pointer shadow-l/30 shadow-green hover:shadow-xl/30  rounded-full"
+            src="img/hero-v2.png">
+        <div class="absolute top-32 right-32 w-[128px] [&_svg]:fill-green">
+            <svg fill="#000000" width="128px" height="128px" viewBox="0 0 256 256" id="Flat"
+                xmlns="http://www.w3.org/2000/svg" transform="rotate(45)">
+
+                <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M228,184a4,4,0,0,1-8,0A91.99984,91.99984,0,0,0,62.94629,118.94629L37.77441,144.11816H92.11816a4,4,0,0,1,0,8h-64a4.03169,4.03169,0,0,1-.78375-.0791c-.11542-.023-.22211-.0664-.33368-.09863a2.339,2.339,0,0,1-.7879-.32568c-.10455-.05713-.21307-.103-.31323-.16993a4.026,4.026,0,0,1-1.10834-1.10888c-.06494-.09717-.10931-.20264-.16486-.30371a3.972,3.972,0,0,1-.20221-.38428,3.9069,3.9069,0,0,1-.12646-.40723c-.03333-.11328-.07721-.22168-.10053-.33935a4.01022,4.01022,0,0,1-.079-.78321v-64a4,4,0,0,1,8,0v54.34375L57.29,113.29A100,100,0,0,1,228,184Z" />
+                </g>
+
+            </svg>
         </div>
-        <div class="flex items-center justify-center dark:text-white text-text-gray flex-col">
+        <div class="flex items-center left-2 absolute flex-col justify-center dark:text-white text-text-gray ">
 
             @if(this.currentLang === "de"){
-            <div appHeroAnimation>Hi, ich bin</div>
-            <div appHeroAnimation>Anton</div>
-            <div appHeroAnimation>und ein</div>
-            <div appHeroAnimation>Frontend</div>
-            <div appHeroAnimation>Entwickler!</div>
+            <div class="flex flex-row" appHeroAnimation>"Hi, ich bin Anton</div>
+            <div class="flex flex-row" appHeroAnimation>und ein Frontend</div>
+            <div class="flex flex-row" appHeroAnimation>Entwickler!"</div>
             }
 
             @if(this.currentLang === "en"){
-            <div appHeroAnimation>Hi, I'm</div>
-            <div appHeroAnimation>Anton</div>
-            <div appHeroAnimation>and I'm a</div>
-            <div appHeroAnimation>Frontend</div>
-            <div appHeroAnimation>Developer!</div>
+            <div class="flex flex-row" appHeroAnimation>"Hi, I'm Anton and</div>
+            <div class="flex flex-row" appHeroAnimation>I do Frontend</div>
+            <div class="flex flex-row" appHeroAnimation>Development!"</div>
             }
         </div>
-    </div>
-    <div id="short-info-wrapper" class="flex flex-row justify-center">
         <div
-            class="flex flex-row gap-[54px] bg-side-bar-light dark:bg-side-bar-dark inset-shadow-2xs shadow-2xs p-8 rounded-xl [&_span]:dark:text-green-dm about-me-icons">
+            class="flex flex-col [&_div]:rounded-xl gap-[12px] [&_div]:pr-2 [&_div]:w-[148px] [&_div]:h-[128px] [&_div]:shadow-2xs [&_div]:transition-[width] [&_div]:duration-280 [&_div]:bg-side-bar-light [&_div]:dark:bg-side-bar-dark absolute top-88 left-0">
+            <div #shortinfocontainer class="bg-side-bar-light flex flex-row items-center group" (mouseover)="showText(this.location, 'Biberach an der Riß, Germany', 0, 388)">
+                <div class="flex flex-row justify-start items-center gap-2 pl-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        width="74" height="74" viewBox="0 0 256 256" xml:space="preserve"
+                        class="[&_path]:dark:fill-green-dm [&_path]:fill-green">
+                        <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                            transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                            <path
+                                d="M 45 90 c -0.354 0 -0.681 -0.187 -0.861 -0.491 l -4.712 -7.972 C 30.222 65.976 20.704 49.884 17.64 43.734 c -2.033 -4.169 -3.062 -8.646 -3.062 -13.313 C 14.578 13.647 28.225 0 45 0 c 16.774 0 30.422 13.647 30.422 30.422 c 0 4.664 -1.028 9.141 -3.056 13.305 c -0.012 0.023 -0.023 0.045 -0.036 0.067 c -3.095 6.193 -12.581 22.231 -21.757 37.743 l -4.712 7.972 C 45.681 89.813 45.354 90 45 90 z M 45 2 C 29.328 2 16.578 14.75 16.578 30.422 c 0 4.359 0.96 8.542 2.854 12.43 c 3.027 6.073 12.522 22.126 21.705 37.649 L 45 87.035 l 3.853 -6.517 c 9.187 -15.531 18.686 -31.591 21.717 -37.676 c 0.009 -0.017 0.018 -0.033 0.026 -0.049 c 1.875 -3.874 2.826 -8.036 2.826 -12.372 C 73.422 14.75 60.672 2 45 2 z"
+                                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill-rule: nonzero; opacity: 1;"
+                                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                            <path
+                                d="M 45 42.436 c -7.279 0 -13.2 -5.922 -13.2 -13.201 s 5.921 -13.2 13.2 -13.2 c 7.278 0 13.2 5.921 13.2 13.2 S 52.278 42.436 45 42.436 z M 45 18.035 c -6.176 0 -11.2 5.024 -11.2 11.2 c 0 6.176 5.024 11.201 11.2 11.201 s 11.2 -5.024 11.2 -11.201 C 56.2 23.059 51.176 18.035 45 18.035 z"
+                                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill-rule: nonzero; opacity: 1;"
+                                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                        </g>
+                    </svg>
+                    <svg #svg width="38" height="38" viewBox="-19.04 0 75.804 75.804" xmlns="http://www.w3.org/2000/svg"
+                        class="[&_path]:dark:fill-green-dm [&_path]:fill-green opacity-50 group-hover:opacity-0 transition-opacity delay-75">
+                        <g id="Group_65" data-name="Group 65" transform="translate(-831.568 -384.448)">
+                            <path id="Path_57" data-name="Path 57"
+                                d="M833.068,460.252a1.5,1.5,0,0,1-1.061-2.561l33.557-33.56a2.53,2.53,0,0,0,0-3.564l-33.557-33.558a1.5,1.5,0,0,1,2.122-2.121l33.556,33.558a5.53,5.53,0,0,1,0,7.807l-33.557,33.56A1.5,1.5,0,0,1,833.068,460.252Z"
+                                fill="#0c2c67" />
+                        </g>
+                    </svg>
+                </div>
+                <span #location class="text-xl text-green-dm font-semibold"></span>
+            </div>
+            <div  #shortinfocontainer  class="bg-side-bar-light flex flex-row items-center group"
+                (mouseover)="showText(this.code, 'Bereit neue Wege des Programmierens kennenzulernen!', 1, 438)">
+                <div class="flex flex-row justify-start items-center gap-2 pl-5">
+                <svg fill="#000000" width="74px" height="74px" viewBox="0 0 256 256" id="Flat"
+                    xmlns="http://www.w3.org/2000/svg" class="[&_path]:dark:fill-green-dm [&_path]:fill-green">
+                    <path
+                        d="M66.56055,91.07324,22.24805,128l44.3125,36.92676a4.00015,4.00015,0,0,1-5.1211,6.14648l-48-40a4.00042,4.00042,0,0,1,0-6.14648l48-40a4.00015,4.00015,0,0,1,5.1211,6.14648Zm176,33.85352-48-40a4.00015,4.00015,0,0,0-5.1211,6.14648L233.752,128l-44.3125,36.92676a4.00015,4.00015,0,0,0,5.1211,6.14648l48-40a4.00042,4.00042,0,0,0,0-6.14648ZM161.36719,36.24121a3.99793,3.99793,0,0,0-5.12647,2.3916l-64,176a4.00017,4.00017,0,1,0,7.51856,2.73438l64-176A4.00015,4.00015,0,0,0,161.36719,36.24121Z" />
+                </svg>
+                <svg #svg width="38px" height="38px" viewBox="-19.04 0 75.804 75.804" xmlns="http://www.w3.org/2000/svg"
+                    class="[&_path]:dark:fill-green-dm [&_path]:fill-green opacity-50 group-hover:opacity-0 transition-opacity delay-75">
+                    <g id="Group_65" data-name="Group 65" transform="translate(-831.568 -384.448)">
+                        <path id="Path_57" data-name="Path 57"
+                            d="M833.068,460.252a1.5,1.5,0,0,1-1.061-2.561l33.557-33.56a2.53,2.53,0,0,0,0-3.564l-33.557-33.558a1.5,1.5,0,0,1,2.122-2.121l33.556,33.558a5.53,5.53,0,0,1,0,7.807l-33.557,33.56A1.5,1.5,0,0,1,833.068,460.252Z"
+                            fill="#0c2c67" />
+                    </g>
+                </svg>
+                </div>
+                <span #code class="text-xl text-green-dm font-semibold"></span>
+            </div>
+            <!-- <div class="bg-side-bar-light"></div> -->
+        </div>
+    </div>
+    <div id="empty" class="w-full h-[586px]"></div>
+    <!-- <div id="short-info-wrapper" class="flex flex-row justify-center">
+        <div
+            class="flex flex-row gap-[54px] bg-side-bar-light dark:bg-side-bar-dark inset-shadow-2xs shadow-2xs p-8 rounded-xl [&_span]:dark:text-green-dm [&_span]:font-semibold about-me-icons">
             <div class="flex flex-col items-center gap-[22px]">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
@@ -143,21 +210,5 @@
                 </span>
             </div>
         </div>
-    </div>
-    <article class="text-text-gray text-xl dark:text-white">
-
-        @if(this.currentLang === "de"){
-        {{ texts.de.about }}
-        }
-
-        @if(this.currentLang === "en"){
-        {{ texts.en.about }}
-        }
-
-        <br><br>
-        <blockquote class="p-4 my-4 border-s-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-side-bar-dark">
-            <p class="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">"Software is like sex:
-                It's better when it's free." - <a class="text-text-gray dark:text-white">Linus Torvalds</a></p>
-        </blockquote>
-    </article>
+    </div> -->
 </section>

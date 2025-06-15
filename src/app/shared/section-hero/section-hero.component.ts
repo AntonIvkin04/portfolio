@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
 import { HeroAnimationDirective } from '../../directives/hero-animation.directive';
@@ -14,22 +14,29 @@ export class SectionHeroComponent {
   langSubscription: Subscription | undefined
   currentLang: string = '';
 
-  public texts = {
-    de: {
-      about: 'Hallo! Mein Name ist Anton, ich bin 21 Jahre alt und begeistere mich für Computertechnik jeder Art. Schon lange wollte ich programmieren lernen, wusste aber nie, wo ich anfangen sollte. Mit 19 Jahren habe ich mich dann entschieden, eine Frontend-Weiterbildung zu beginnen.'
-    },
-    en: {
-      about: "Hi! My name is Anton, I'm 21 years old, and I'm passionate about all kinds of computer technology. I've wanted to learn programming for a long time but never knew where to start. When I was 19, I decided to begin a frontend development course."
-    }
-  }
+  @ViewChildren('shortinfocontainer') infocontainer!:QueryList<ElementRef>
+  @ViewChildren('svg') svg!:QueryList<ElementRef>
+  @ViewChild('code') code!: ElementRef;
+  @ViewChild('location') location!: ElementRef;
 
-  ngOnInit(){
+  ngOnInit() {
     this.langSubscription = this.langService.lang$.subscribe(lang => {
       this.currentLang = lang;
     })
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.langSubscription?.unsubscribe()
+  }
+
+  showText(id: ElementRef, text: string, index:number, width:number) {
+    let currentElement = this.infocontainer.get(index)
+    let currentSvg = this.svg.get(index)
+    currentElement!.nativeElement.style.width = `${width}px`
+    setTimeout(() => {
+      currentSvg!.nativeElement.style.display = 'none'
+      id.nativeElement.innerText = text
+      id.nativeElement.classList.add('text-opacity')
+    }, 250)
   }
 }

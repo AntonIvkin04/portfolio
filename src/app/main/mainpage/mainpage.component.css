@@ -21,6 +21,12 @@
 }
 
 @media (max-width: 1140px) {
+    .sidebare{
+        display: none;
+    }
+}
+
+@media (max-width: 1140px) {
 
     .costum-margin-main-page {
         margin-left: 0;

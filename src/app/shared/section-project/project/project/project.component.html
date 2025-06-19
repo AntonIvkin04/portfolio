@@ -25,19 +25,19 @@
         <div #textcontainer>
             <article #articels>
                 <span class="text-2xl font-semibold">{{ titel().desciription }}</span>
-                {{ getLocalizedObj('description')}}
+                <span class="span">{{ getLocalizedObj('description')}}</span>
             </article>
         </div>
         <div #textcontainer>
             <article #articels>
                 <span class="text-2xl font-semibold">{{ titel().organisation }}</span>
-                <span>{{ getLocalizedObj('organisation')}}</span>
+                <span class="span">{{ getLocalizedObj('organisation')}}</span>
             </article>
         </div>
         <div>
             <article #articels>
-                <span class="text-2xl font-semibold">{{ titel().learn_goal }}</span>
-                <span>{{ getLocalizedObj('learn_goal')}}</span>
+                <span class="text-2xl font-semibold articel">{{ titel().learn_goal }}</span>
+                <span class="span">{{ getLocalizedObj('learn_goal')}}</span>
             </article>
         </div>
     </div>

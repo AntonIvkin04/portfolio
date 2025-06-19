@@ -94,9 +94,9 @@ export class SidebareComponent {
     this.spanWidthCache = [];
   }
 
-  ngAfterViewInit() {
-    this.changeUnderlineWidth()
-  }
+  // ngAfterViewInit() {
+  //   this.changeUnderlineWidth()
+  // }
 
   returnDarkModeClass(dark: boolean) {
     if (dark) {

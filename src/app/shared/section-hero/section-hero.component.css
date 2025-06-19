@@ -1,7 +1,6 @@
 @media (max-width:960px) {
     .about-me {
         flex-direction: column !important;
-        gap: 54px !important;
     }
 }
 
@@ -11,6 +10,35 @@
     }
 }
 
+@media (max-width:600px) {
+    .text-animation{
+        font-size: 52px!important;
+    }
+}
+
+@media (max-width:480px) {
+    .text-animation{
+        font-size: 46px!important;
+    }
+}
+
+@media (max-width:440px) {
+    .text-animation{
+        font-size: 42px!important;
+    }
+}
+
+@media (max-width:410px) {
+    .text-animation{
+        font-size: 36px!important;
+    }
+}
+
+@media (max-width:360px) {
+    .text-animation{
+        font-size: 32px!important;
+    }
+}
 
 .text-animation {
     display: inline-block;

@@ -2,6 +2,7 @@ import { Component, ElementRef, inject, QueryList, ViewChild, ViewChildren } fro
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
 import { HeroAnimationDirective } from '../../directives/hero-animation.directive';
+import { Language } from '../types';
 
 @Component({
   selector: 'app-section-hero',
@@ -11,8 +12,28 @@ import { HeroAnimationDirective } from '../../directives/hero-animation.directiv
 })
 export class SectionHeroComponent {
   private langService = inject(LanguageDecService)
-  langSubscription: Subscription | undefined
-  currentLang: string = '';
+  langSubscription: Subscription | undefined;
+  currentLang: Language = 'de'
+
+  info_text:{
+    location:{
+      de:string
+      en:string
+    },
+    code_info:{
+      de:string
+      en:string
+    }
+  } = {
+    location: {
+      de: 'Biberach an der Riß, Deutschland',
+      en: 'Biberach an der Riß, Germany'
+    },
+    code_info:{
+      de: 'Bereit neue Wege des Programmierens kennenzulernen!',
+      en: 'Ready to learn new paths at programming!'
+    }
+  } 
 
   @ViewChildren('shortinfocontainer') infocontainer!:QueryList<ElementRef>
   @ViewChildren('svg') svg!:QueryList<ElementRef>
@@ -23,19 +44,22 @@ export class SectionHeroComponent {
     this.langSubscription = this.langService.lang$.subscribe(lang => {
       this.currentLang = lang;
     })
+
   }
 
   ngOnDestroy() {
     this.langSubscription?.unsubscribe()
+
   }
 
-  showText(id: ElementRef, text: string, index:number, width:number) {
+  showText(id: ElementRef, index:number, width:number) {
     let currentElement = this.infocontainer.get(index)
     let currentSvg = this.svg.get(index)
     currentElement!.nativeElement.style.width = `${width}px`
+    console.log(currentElement)
     setTimeout(() => {
       currentSvg!.nativeElement.style.display = 'none'
-      id.nativeElement.innerText = text
+      id.nativeElement.style.display = 'block'
       id.nativeElement.classList.add('text-opacity')
     }, 250)
   }

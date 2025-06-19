@@ -5,6 +5,7 @@
 
 @theme {
   --breakpoint-xl: 1440px;
+  --breakpoint-hero-md: 870px;
   --color-side-bar-light: #F5F5F5;
   --color-side-bar-dark: #1F1F1F;
   --color-border-gray: rgba(95, 95, 95, 0.5);

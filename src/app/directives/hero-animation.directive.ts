@@ -6,11 +6,13 @@ import { Directive, ElementRef, inject, Renderer2 } from '@angular/core';
 export class HeroAnimationDirective {
   private el = inject(ElementRef)
   private renderer = inject(Renderer2)
+
+
   constructor() {
   }
 
   ngAfterViewInit() {
-    console.log(this.el.nativeElement.textContent.split(''))
+    // console.log(this.el.nativeElement.textContent.split(''))
 
     let textArray: string[] = this.el.nativeElement.textContent.split('')
     this.el.nativeElement.textContent = '';
@@ -25,6 +27,10 @@ export class HeroAnimationDirective {
 
       this.renderer.appendChild(this.el.nativeElement, span);
     });
+  }
+
+  getElementRef(){
+    
   }
 
 }

@@ -31,7 +31,7 @@ export class MainContentComponent {
   }
 
   ngAfterViewInit() {
-    console.log(this.about.nativeElement)
+    // console.log(this.about.nativeElement)
     // this.scrollY.observeElement(this.about, 'about')
     // this.scrollY.observeElement(this.project, 'project')
     // this.scrollY.observeElement(this.skill, 'skill')

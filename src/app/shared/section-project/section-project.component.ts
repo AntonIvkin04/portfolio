@@ -73,10 +73,10 @@ export class SectionProjectComponent {
       this.activeelement.nativeElement.style.width = `${this.targetRect[this.setProjectActive()].width}px`
     }
 
-    if (this.targetRect) {
-      console.log(this.targetRect[this.setProjectActive()])
-      console.log(this.setProjectActive())
-    }
+    // if (this.targetRect) {
+    //   console.log(this.targetRect[this.setProjectActive()])
+    //   console.log(this.setProjectActive())
+    // }
 
   })
 

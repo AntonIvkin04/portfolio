@@ -15,6 +15,7 @@
     height: 2px;
     background-color: rgba(130, 130, 130, 0.5);
     transition: width 125ms ease-in-out;
+    width: 0px;
 }
 
 .active .under-text{

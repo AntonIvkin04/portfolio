@@ -20,7 +20,13 @@
     animation: sidebar-forward 250ms ease-out forwards;
 }
 
-@media (max-width: 1140px) {
+@media (max-width: 1160px) {
+    .sidebare{
+        display: none;
+    }
+}
+
+@media (max-width: 1160px) {
 
     .costum-margin-main-page {
         margin-left: 0;

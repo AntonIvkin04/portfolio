@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 export class MainpageComponent {
   private screenService = inject(ScreenResService)
   private screenWsubscription: Subscription | undefined;
+  private firstload: boolean = false;
 
   @ViewChild('sidebare', { read: ElementRef }) sidebare!: ElementRef;
 
@@ -22,22 +23,34 @@ export class MainpageComponent {
 
   }
 
-  ngAfterViewInit() {
-    this.subscribeWindowWidth()
+  ngOnInit() {
+    
   }
 
-  subscribeWindowWidth() {
-    this.screenWsubscription = this.screenService.screenW$.subscribe((w) => {
-      if (w < 1141) {
-        this.sidebare.nativeElement.classList.add('sidebar-animation-back')
-        this.sidebare.nativeElement.classList.remove('sidebar-animation-forward')
-      }
+  ngOnDestroy() {
+    this.screenWsubscription?.unsubscribe()
+  }
 
-      if(w > 1141){
-        this.sidebare.nativeElement.classList.remove('sidebar-animation-back')
-        this.sidebare.nativeElement.classList.add('sidebar-animation-forward')
+  ngAfterViewInit() {
+    this.screenWsubscription = this.screenService.screenW$.subscribe((w) => {
+      if (this.firstload) {
+        this.displaySidebare(w)
+        this.sidebare.nativeElement.classList.remove('sidebare')
       }
     })
+    setTimeout(() => {this.firstload = true}, 100)
+  }
+
+  displaySidebare(w: number) {
+    if (w < 1161) {
+      this.sidebare.nativeElement.classList.add('sidebar-animation-back')
+      this.sidebare.nativeElement.classList.remove('sidebar-animation-forward')
+    }
+
+    if (w > 1161) {
+      this.sidebare.nativeElement.classList.remove('sidebar-animation-back')
+      this.sidebare.nativeElement.classList.add('sidebar-animation-forward')
+    }
   }
 
 }

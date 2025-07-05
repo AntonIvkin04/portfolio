@@ -81,6 +81,7 @@ export class SidebareComponent {
   }
 
   changeUnderlineWidth() {
+    // console.log(this.spans + `t`)
     this.spans.forEach((e) => {
       this.spanWidthCache.push(e.nativeElement.offsetWidth)
     })
@@ -94,9 +95,9 @@ export class SidebareComponent {
     this.spanWidthCache = [];
   }
 
-  ngAfterViewInit() {
-    this.changeUnderlineWidth()
-  }
+  // ngAfterViewInit() {
+  //   this.changeUnderlineWidth()
+  // }
 
   returnDarkModeClass(dark: boolean) {
     if (dark) {

@@ -1,5 +1,7 @@
-import { Component, computed, effect, input, InputSignal, ViewChildren, QueryList, ElementRef, ViewChild } from '@angular/core';
+import { Component, computed, effect, input, InputSignal, ViewChildren, QueryList, ElementRef, ViewChild, inject, signal } from '@angular/core';
 import { Language } from '../../../types';
+import { ScreenResService } from '../../../../service/screen-res/screen-res.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project',
@@ -11,6 +13,11 @@ export class ProjectComponent {
   currentProjectIndex = input()
   currentLang: InputSignal<Language> = input.required<Language>()
 
+  private screenSer = inject(ScreenResService);
+  screenSubscription: Subscription | undefined;
+
+  screenWSignal = signal<number>(0)
+
   @ViewChildren('textcontainer') textcontainers!: QueryList<ElementRef>;
   @ViewChildren('articels') articels!: QueryList<ElementRef>;
   @ViewChild('techicons') techicons!: ElementRef
@@ -18,13 +25,13 @@ export class ProjectComponent {
   setPulesAnimationOnChange = effect(() => {
     this.currentProjectIndex();
 
-    this.techicons.nativeElement.classList.add('animateswitch')
+    this.techicons?.nativeElement.classList.add('animateswitch')
 
     this.articels?.forEach((e) => {
       e.nativeElement.classList.add('animateswitch')
 
       setTimeout(() => {
-      e.nativeElement.classList.remove('animateswitch')
+        e.nativeElement.classList.remove('animateswitch')
       }, 450)
     })
     setTimeout(() => this.techicons.nativeElement.classList.remove('animateswitch'), 450)
@@ -49,7 +56,7 @@ export class ProjectComponent {
       },
       demo_link: '',
       github_link: '',
-      tech_stack: ['html','javascript']
+      tech_stack: ['html', 'javascript']
     } :
       this.currentProjectIndex() === 1 ? {
         name: 'Join',
@@ -69,7 +76,7 @@ export class ProjectComponent {
         },
         demo_link: '',
         github_link: '',
-        tech_stack: ['html','css','javascript']
+        tech_stack: ['html', 'css', 'javascript']
       } :
         {
           name: '',
@@ -110,19 +117,31 @@ export class ProjectComponent {
   }
 
   ngAfterViewInit() {
-    this.setElementHeight()
+    // this.setElementHeight()
+    this.screenSubscription = this.screenSer.screenW$.subscribe((w) => {
+      this.screenWSignal.set(w)
+    })
   }
 
-  setElementHeight() {
-    this.textcontainers.forEach(e => {
-      let elementHeight = e.nativeElement.offsetHeight
-      // e.nativeElement.classList.add(`h-[${elementHeight}px]`);
-      e.nativeElement.style.height = `${elementHeight}px`;
-    });
-  }
+  // setElementHeight = effect(() => {
+  //   this.screenWSignal()
+  //   // console.log('screen' + true)
+  //   this.textcontainers?.forEach(e => {
+  //     let articelElement = e.nativeElement.querySelector('.span') as HTMLElement
+  //     // console.log(articelElement.offsetHeight)
+  //     let elementHeight = e.nativeElement.offsetHeight
+  //     e.nativeElement.style.height = `${elementHeight}px`;
+  //   });
+  // })
 
+  // setElementHeight() {
+  //   this.textcontainers.forEach(e => {
+  //     let elementHeight = e.nativeElement.offsetHeight
+  //     e.nativeElement.style.height = `${elementHeight}px`;
+  //   });
+  // }
 
-  getTechSvgSrc(techicon:string){
+  getTechSvgSrc(techicon: string) {
     return `icons/${techicon}.svg`
   }
 

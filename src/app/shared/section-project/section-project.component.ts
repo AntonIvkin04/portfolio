@@ -67,10 +67,19 @@ export class SectionProjectComponent {
     };
 
   changeActivBackground = effect(() => {
+    console.log(true)
+    if (this.targetRect) {
+      
+      console.log(this.targetRect)
+      console.log(this.targetRect[this.setProjectActive()])
 
-    if (this.activeelement) {
-      this.activeelement.nativeElement.style.transform = `translateX(${this.targetRect[this.setProjectActive()].left - this.flexRect.left}px)`
-      this.activeelement.nativeElement.style.width = `${this.targetRect[this.setProjectActive()].width}px`
+      let translateX = `translateX(${this.targetRect[this.setProjectActive()].left - this.flexRect.left}px)`
+      let width = `${this.targetRect[this.setProjectActive()].width}px`
+
+      if (this.activeelement) {
+        this.activeelement.nativeElement.style.transform = translateX
+        this.activeelement.nativeElement.style.width = width
+      }
     }
 
     // if (this.targetRect) {

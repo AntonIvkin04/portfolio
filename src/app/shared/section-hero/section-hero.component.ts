@@ -96,6 +96,7 @@ export class SectionHeroComponent {
     setTimeout(() => {
       currentSvg!.nativeElement.style.display = 'none'
       id.nativeElement.style.display = 'block'
+      id.nativeElement.style.display = 'block'
       id.nativeElement.classList.add('text-opacity')
     }, 250)
   }

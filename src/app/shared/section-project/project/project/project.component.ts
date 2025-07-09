@@ -1,5 +1,8 @@
 import { Component, computed, effect, input, InputSignal, ViewChildren, QueryList, ElementRef, ViewChild, inject, signal } from '@angular/core';
+import { Component, computed, effect, input, InputSignal, ViewChildren, QueryList, ElementRef, ViewChild, inject, signal } from '@angular/core';
 import { Language } from '../../../types';
+import { ScreenResService } from '../../../../service/screen-res/screen-res.service';
+import { Subscription } from 'rxjs';
 import { ScreenResService } from '../../../../service/screen-res/screen-res.service';
 import { Subscription } from 'rxjs';
 
@@ -12,6 +15,11 @@ import { Subscription } from 'rxjs';
 export class ProjectComponent {
   currentProjectIndex = input()
   currentLang: InputSignal<Language> = input.required<Language>()
+
+  private screenSer = inject(ScreenResService);
+  screenSubscription: Subscription | undefined;
+
+  screenWSignal = signal<number>(0)
 
   private screenSer = inject(ScreenResService);
   screenSubscription: Subscription | undefined;
@@ -31,6 +39,7 @@ export class ProjectComponent {
       e.nativeElement.classList.add('animateswitch')
 
       setTimeout(() => {
+        e.nativeElement.classList.remove('animateswitch')
         e.nativeElement.classList.remove('animateswitch')
       }, 450)
     })
@@ -57,6 +66,7 @@ export class ProjectComponent {
       demo_link: '',
       github_link: '',
       tech_stack: ['html', 'javascript']
+      tech_stack: ['html', 'javascript']
     } :
       this.currentProjectIndex() === 1 ? {
         name: 'Join',
@@ -76,6 +86,7 @@ export class ProjectComponent {
         },
         demo_link: '',
         github_link: '',
+        tech_stack: ['html', 'css', 'javascript']
         tech_stack: ['html', 'css', 'javascript']
       } :
         {
@@ -141,6 +152,7 @@ export class ProjectComponent {
   //   });
   // }
 
+  getTechSvgSrc(techicon: string) {
   getTechSvgSrc(techicon: string) {
     return `icons/${techicon}.svg`
   }

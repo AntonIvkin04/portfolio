@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, inject, QueryList, ViewChild, ViewChildren, signal, effect } from '@angular/core';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
 import { HeroAnimationDirective } from '../../directives/hero-animation.directive';
@@ -17,6 +17,7 @@ export class SectionHeroComponent {
   langSubscription: Subscription | undefined;
   currentLang: Language = 'de'
   array: [] = [];
+  darkmode = signal<boolean>(true)
 
   info_text: {
     location: {
@@ -73,9 +74,11 @@ export class SectionHeroComponent {
     spawn(async () => {
       await delay(200)
       element.style.transform = 'translateY(0px)'
-      element.style.color = 'white'
+      element.style.color = ''
     })
   }
+
+
 
   setAnimationVariableTrue() {
     spawn(async () => {
@@ -99,5 +102,15 @@ export class SectionHeroComponent {
       id.nativeElement.style.display = 'block'
       id.nativeElement.classList.add('text-opacity')
     }, 250)
+  }
+
+  darkMode() {
+    if (document.documentElement.classList.contains('dark')) {
+      this.darkmode.set(true)
+      return true
+    } else {
+      this.darkmode.set(false)
+      return false
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef, Output } from '@angular/core';
 import { SectionHeroComponent } from '../../shared/section-hero/section-hero.component';
 import { SectionProjectComponent } from '../../shared/section-project/section-project.component';
 import { SectionSkillsComponent } from '../../shared/section-skills/section-skills.component';
@@ -23,6 +23,7 @@ export class MainContentComponent {
   @ViewChild('project', { read: ElementRef }) project!: ElementRef
   @ViewChild('skill', { read: ElementRef }) skill!: ElementRef
   @ViewChild('contact', { read: ElementRef }) contact!: ElementRef
+
 
   constructor() {
 

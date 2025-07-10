@@ -10,19 +10,19 @@
                 class="flex flex-col items-end [&_span]:font-semibold [&_span]:text-text-inactive [&_span]:dark:border-gray">
                 <div id="current-section-wrapper"
                     class="flex flex-col items-start [&>div]:w-[120px] gap-[22px] [&_span]:text-[18px] [&_div]:cursor-pointer">
-                    <div [ngClass]="{ 'active-dm': aboutme && darkMode(), 'active' : aboutme}">
+                    <div [ngClass]="{ 'active-dm': aboutme && darkMode(), 'active' : aboutme}" (click)="scrollToPosition('about')">
                         <span #spans>{{ lang[this.currentLang].aboutme }}</span>
                         <div #under class="under-text"></div>
                     </div>
-                    <div [ngClass]="{ 'active-dm': project && darkMode(), 'active' : project}">
+                    <div [ngClass]="{ 'active-dm': project && darkMode(), 'active' : project}" (click)="scrollToPosition('project')">
                         <span #spans>{{ lang[this.currentLang].project }}</span>
                         <div #under class="under-text"></div>
                     </div>
-                    <div [ngClass]="{ 'active-dm': skill && darkMode(), 'active' : skill}">
+                    <div [ngClass]="{ 'active-dm': skill && darkMode(), 'active' : skill}" (click)="scrollToPosition('skill')">
                         <span #spans>{{ lang[this.currentLang].skill }}</span>
                         <div #under class="under-text"></div>
                     </div>
-                    <div [ngClass]="{ 'active-dm': contact && darkMode(), 'active' : contact}">
+                    <div [ngClass]="{ 'active-dm': contact && darkMode(), 'active' : contact}" (click)="scrollToPosition('contact')">
                         <span #spans>{{ lang[this.currentLang].contact }}</span>
                         <div #under class="under-text"></div>
                     </div>

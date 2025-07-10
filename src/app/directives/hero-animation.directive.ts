@@ -12,7 +12,6 @@ export class HeroAnimationDirective {
   }
 
   ngAfterViewInit() {
-    // console.log(this.el.nativeElement.textContent.split(''))
 
     let textArray: string[] = this.el.nativeElement.textContent.split('')
     this.el.nativeElement.textContent = '';

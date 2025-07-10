@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, ViewChildren, QueryList } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { ScreenResService } from '../../service/screen-res/screen-res.service';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
@@ -17,6 +17,7 @@ export class SidebareComponent {
   public scrollY = inject(ScrollYServiceService)
   private screenRes = inject(ScreenResService)
   private langService = inject(LanguageDecService)
+  private vps = inject(ViewportScroller)
 
   private dialog = inject(Dialog)
   dialogSubscription: Subscription | undefined
@@ -56,13 +57,18 @@ export class SidebareComponent {
 
   }
   
+  scrollToPosition(scrollY:string){
+    this.vps.setOffset([0, 100]);
+    this.vps.scrollToAnchor(scrollY)
+  }
+
   ngOnInit() {
     this.scrollY.currentScrollY$.subscribe((x) => {
       this.markCurrentSection(x)
     })
 
     setTimeout(() => {
-      this.screenRes.device$.subscribe((x) => {
+      this.screenRes.screenW$.subscribe((x) => {
         console.log(x)
       })
     }, 500)
@@ -81,7 +87,6 @@ export class SidebareComponent {
   }
 
   changeUnderlineWidth() {
-    // console.log(this.spans + `t`)
     this.spans.forEach((e) => {
       this.spanWidthCache.push(e.nativeElement.offsetWidth)
     })
@@ -94,10 +99,6 @@ export class SidebareComponent {
     this.undersIndex = 0;
     this.spanWidthCache = [];
   }
-
-  // ngAfterViewInit() {
-  //   this.changeUnderlineWidth()
-  // }
 
   returnDarkModeClass(dark: boolean) {
     if (dark) {

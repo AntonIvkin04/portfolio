@@ -1,15 +1,15 @@
-<section class="flex flex-col ">
-    <span class="text-left text-[38px] mb-[48px] dark:text-white">Projekte</span>
+<section class="flex flex-col" id="project">
+    <span class="text-left text-[38px] mb-[48px] dark:text-white max-[540px]:text-[28px] max-[520px]:mb-[38px]">Projekte</span>
     <div class="bg-side-bar-light rounded-b-xl dark:bg-side-bar-dark flex flex-col items-center">
         <div class="flex flex-row justify-center w-full">
             <div id="project-wrapper" class="flex flex-col h-[100%] w-full">
                 <div #flexcontainer class="relative flex flex-row items-end w-full">
-                    <div #activeelement class="absolute h-[68px] w-[200px] top-0 bg-[#e6e6e6] dark:bg-[#313030] transition-[transform,width]">
+                    <div #activeelement class="animation-slide absolute top-0 bg-[#e6e6e6] dark:bg-[#313030] transition-[transform,width]">
                     </div>
                     @for (item of project.list; track $index) {
-                    <div #projectelement [id]="project.list[$index].id" class="text-2xl dark:text-white py-4 px-4 flex flex-row gap-2 opacity-50 hover:cursor-pointer
+                    <div #projectelement [id]="project.list[$index].id" class="text-2xl h-[60px] dark:text-white py-4 px-4 flex flex-row gap-2 opacity-50 hover:cursor-pointer
                     hover:opacity-100 hover:dark:bg-[#292828] hover:bg-[#f2f2f2] transition-opacity z-0
-                    " (click)="this.setProjectActive.set($index)" [ngClass]="{'active-dm': project.list[$index].active && darkMode(), 'active' : project.list[$index].active}">{{ project.list[$index].name }} <img
+                    " (click)="this.setProjectActive.set($index)" [ngClass]="{'active-dm': project.list[$index].active && darkMode(), 'active' : project.list[$index].active}"><div class="project-title">{{ project.list[$index].name }}</div><img
                             src="{{ project.list[$index].icon }}"></div>
                     }
                 </div>

@@ -13,44 +13,9 @@ import { Subscription } from 'rxjs';
   styleUrl: './mainpage.component.css'
 })
 export class MainpageComponent {
-  private screenService = inject(ScreenResService)
-  private screenWsubscription: Subscription | undefined;
-  private firstload: boolean = false;
-
-  @ViewChild('sidebare', { read: ElementRef }) sidebare!: ElementRef;
 
   constructor() {
 
-  }
-
-  ngOnInit() {
-    
-  }
-
-  ngOnDestroy() {
-    this.screenWsubscription?.unsubscribe()
-  }
-
-  ngAfterViewInit() {
-    this.screenWsubscription = this.screenService.screenW$.subscribe((w) => {
-      if (this.firstload) {
-        this.displaySidebare(w)
-        this.sidebare.nativeElement.classList.remove('sidebare')
-      }
-    })
-    setTimeout(() => {this.firstload = true}, 100)
-  }
-
-  displaySidebare(w: number) {
-    if (w < 1161) {
-      this.sidebare.nativeElement.classList.add('sidebar-animation-back')
-      this.sidebare.nativeElement.classList.remove('sidebar-animation-forward')
-    }
-
-    if (w > 1161) {
-      this.sidebare.nativeElement.classList.remove('sidebar-animation-back')
-      this.sidebare.nativeElement.classList.add('sidebar-animation-forward')
-    }
   }
 
 }

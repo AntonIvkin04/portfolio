@@ -5,7 +5,7 @@
     </div>
     <div #techicons class="flex flex-row gap-[22px]">
         @for(item of currentProject().tech_stack; track $index){
-            <img src={{this.getTechSvgSrc(item)}} width="64px" height="64px">
+            <img class="max-[520px]:w-[48px] max-[520px]:h-[48px]" src={{this.getTechSvgSrc(item)}} width="64px" height="64px">
         }
     </div>
     <div class="flex flex-col 
@@ -21,22 +21,23 @@
     [&_span]:dark:text-white
     [&_article]:dark:text-white
     [&_article]:text-[18px]
+    max-[520px]:[&_article]:text-[16px]
     [&_div]:transition-[height]">
         <div #textcontainer>
             <article #articels>
-                <span class="text-2xl font-semibold">{{ titel().desciription }}</span>
+                <span class="text-2xl max-[520px]:text-xl font-semibold">{{ titel().desciription }}</span>
                 <span class="span">{{ getLocalizedObj('description')}}</span>
             </article>
         </div>
         <div #textcontainer>
             <article #articels>
-                <span class="text-2xl font-semibold">{{ titel().organisation }}</span>
+                <span class="text-2xl max-[520px]:text-xl font-semibold">{{ titel().organisation }}</span>
                 <span class="span">{{ getLocalizedObj('organisation')}}</span>
             </article>
         </div>
         <div>
             <article #articels>
-                <span class="text-2xl font-semibold articel">{{ titel().learn_goal }}</span>
+                <span class="text-2xl max-[520px]:text-xl font-semibold articel">{{ titel().learn_goal }}</span>
                 <span class="span">{{ getLocalizedObj('learn_goal')}}</span>
             </article>
         </div>

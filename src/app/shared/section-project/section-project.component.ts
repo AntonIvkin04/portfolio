@@ -1,10 +1,11 @@
-import { Component, effect, inject, signal, ViewChild, ElementRef, ViewChildren, QueryList, computed } from '@angular/core';
+import { Component, effect, inject, signal, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LanguageDecService } from '../../service/language/language-dec.service';
-import { single, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ProjectComponent } from './project/project/project.component';
 import { Language } from '../types';
+import { ScreenResService } from '../../service/screen-res/screen-res.service';
 
 
 @Component({
@@ -18,11 +19,18 @@ export class SectionProjectComponent {
   private langService = inject(LanguageDecService)
   langSubscription: Subscription | undefined
 
+  private screenService = inject(ScreenResService)
+  screenSubscription: Subscription | undefined;
+  screenWidth = signal<number>(0)
+
+  firstLoad: boolean = false;
+
   @ViewChild('flexcontainer') flexcontainer!: ElementRef
   @ViewChild('activeelement') activeelement!: ElementRef
   @ViewChildren('projectelement') projectelement!: QueryList<ElementRef>
 
   setProjectActive = signal<number>(0)
+  activeID: number = 0;
 
   currentLang: Language = "de";
 
@@ -63,30 +71,43 @@ export class SectionProjectComponent {
           id: 'join',
           active: false,
         },
+        // {
+        //   name: "FreeWeather",
+        //   icon: "/img/favicon_logo_join.png",
+        //   id: 'join',
+        //   active: false,
+        // },
       ]
     };
 
   changeActivBackground = effect(() => {
-    console.log(true)
-    if (this.targetRect) {
-      
-      console.log(this.targetRect)
-      console.log(this.targetRect[this.setProjectActive()])
+    this.activeID = this.setProjectActive()
+    this.setBackgroundWidth()
+  })
 
-      let translateX = `translateX(${this.targetRect[this.setProjectActive()].left - this.flexRect.left}px)`
-      let width = `${this.targetRect[this.setProjectActive()].width}px`
-
+  setBackgroundWidth() {
+    if (this.targetRect.length > 0) {
+      let translateX = `translateX(${this.targetRect[this.activeID].left - this.flexRect.left}px)`
+      let width = `${this.targetRect[this.activeID].width}px`
       if (this.activeelement) {
         this.activeelement.nativeElement.style.transform = translateX
         this.activeelement.nativeElement.style.width = width
       }
     }
+  }
 
-    // if (this.targetRect) {
-    //   console.log(this.targetRect[this.setProjectActive()])
-    //   console.log(this.setProjectActive())
-    // }
-
+  changeActivBackgroundSize = effect(() => {
+    let width = this.screenWidth()
+    if (this.firstLoad === true) {
+      if (width <= 640) {
+        this.getWidthAndPosition()
+        this.setBackgroundWidth()
+      }
+      if (width >= 641) {
+        this.getWidthAndPosition()
+        this.setBackgroundWidth()
+      }
+    }
   })
 
   constructor() {
@@ -99,24 +120,36 @@ export class SectionProjectComponent {
     this.langSubscription = this.langService.lang$.subscribe(lang => {
       this.currentLang = lang;
     });
+
+    this.screenSubscription = this.screenService.screenW$.subscribe(width => {
+      this.screenWidth.set(width)
+    });
   }
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this.flexRect.left = this.flexcontainer.nativeElement.getBoundingClientRect().left
-      this.flexRect.right = this.flexcontainer.nativeElement.getBoundingClientRect().right
-      this.flexRect.width = this.flexcontainer.nativeElement.getBoundingClientRect().width
-      this.projectelement.forEach((e) => {
-        let rect = e.nativeElement.getBoundingClientRect()
-        let eobj = {
-          left: rect.left,
-          right: rect.right,
-          width: rect.width,
-          id: e.nativeElement.id
-        }
-        this.targetRect.push(eobj)
-      })
+      this.getWidthAndPosition()
+      this.firstLoad = true;
     }, 100)
+  }
+
+  getWidthAndPosition() {
+    this.flexRect.left = this.flexcontainer.nativeElement.getBoundingClientRect().left
+    this.flexRect.right = this.flexcontainer.nativeElement.getBoundingClientRect().right
+    this.flexRect.width = this.flexcontainer.nativeElement.getBoundingClientRect().width
+
+    this.targetRect = []
+
+    this.projectelement.forEach((e) => {
+      let rect = e.nativeElement.getBoundingClientRect()
+      let eobj = {
+        left: rect.left,
+        right: rect.right,
+        width: rect.width,
+        id: e.nativeElement.id
+      }
+      this.targetRect.push(eobj)
+    })
   }
 
   removeActive(currentId: number) {
@@ -132,6 +165,7 @@ export class SectionProjectComponent {
 
   ngOnDestroy() {
     this.langSubscription?.unsubscribe()
+    this.screenSubscription?.unsubscribe()
   }
 
   darkMode() {

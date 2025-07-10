@@ -22,13 +22,13 @@
 
 @media (max-width: 1140px) {
     .sidebare{
-        display: none;
+        display: none!important;
     }
 }
 
 @media (max-width: 1160px) {
     .sidebare{
-        display: none;
+        display: none!important;
     }
 }
 

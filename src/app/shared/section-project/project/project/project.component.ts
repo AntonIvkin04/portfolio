@@ -79,7 +79,7 @@ export class ProjectComponent {
         },
         demo_link: '',
         github_link: '',
-        tech_stack: ['html', 'css', 'javascript']
+        tech_stack: ['html', 'css', 'javascript','firebase']
       } :
         {
           name: '',

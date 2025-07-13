@@ -1,15 +1,21 @@
-import { Component, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { SkillIconsMarqueeComponent } from '../skill-icons-marquee/skill-icons-marquee.component';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { delay, Subscription } from 'rxjs';
-import { Language } from '../types';
+import { elementHeight, Language } from '../types';
 import { SkillFadeComponent } from '../skill-fade/skill-fade.component';
+import { SectionHeightDirective } from '../../directives/section-height.directive';
 
 @Component({
   selector: 'app-section-skills',
   imports: [SkillIconsMarqueeComponent, SkillFadeComponent],
   templateUrl: './section-skills.component.html',
-  styleUrl: './section-skills.component.css'
+  styleUrl: './section-skills.component.css',
+    hostDirectives: [{
+      directive: SectionHeightDirective,
+      outputs: ['height'],
+      inputs: ['sectionid']
+    }]
 })
 
 export class SectionSkillsComponent {
@@ -48,5 +54,8 @@ export class SectionSkillsComponent {
 
   ngOnDestroy() {
     this.langSubscription?.unsubscribe();
+  }
+
+  ngAfterViewInit() {
   }
 }

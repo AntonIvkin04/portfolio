@@ -1,8 +1,10 @@
-<div class="flex flex-col items-center">
+@if(!mailSent){
+<div #mail class="flex flex-col items-center">
     <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" class="flex flex-col items-center gap-[48px] w-[80%]">
         <div class="flex flex-col items-center gap-[32px] w-full">
             <div class="w-full relative">
-                <input type="email" placeholder="test" class="
+                <input ngModel required type="email" name="email"
+                    pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" placeholder="test" class="
                     h-[44px] 
                     w-full
                     focus:invalid:border-red-700 
@@ -20,9 +22,9 @@
                     dark:text-white
                     ">
                 <div
-                    class="w-full top-[42px] absolute peer-placeholder-shown:w-0 h-[2px] bg-green dark:bg-green-dm peer-focus:w-full transition-all">
+                    class="w-full top-[42px] absolute peer-placeholder-shown:w-0 h-[2px] peer-invalid:bg-red-700 bg-green dark:bg-green-dm peer-focus:w-full transition-all">
                 </div>
-                <label class="
+                <label #email class="
                     absolute 
                     pointer-events-none 
                     left-0
@@ -41,12 +43,9 @@
                     ">E-Mail</label>
             </div>
             <div class="w-full relative">
-                <input type="text" placeholder="test" class="
+                <input ngModel required name="name" type="text" placeholder="test" class="
                     h-[44px] 
                     w-full
-                    focus:invalid:border-red-700 
-                    focus:invalid:outline-red-700 
-                    focus:invalid:shadow-red-700
                     border-text-gray 
                     peer
                     placeholder-transparent
@@ -61,7 +60,7 @@
                 <div
                     class="w-full top-[42px] absolute peer-placeholder-shown:w-0 h-[2px] bg-green dark:bg-green-dm peer-focus:w-full transition-all origin-center">
                 </div>
-                <label class="
+                <label #name class="
                     absolute 
                     pointer-events-none 
                     left-0
@@ -80,16 +79,17 @@
             </div>
         </div>
         <div class="w-full flex flex-col items-center gap-[22px]">
-            @if (this.currentLang === "de") {
-            <textarea placeholder="Deine Nachricht" class="w-full 
+
+            <textarea ngModel #message="ngModel" minlength="4" required type="text" name="message"
+                placeholder="{{ textareaplaceholder[this.currentLang] }}" class="w-full 
             placeholder-gray-500 
             dark:placeholder-white
+            focus:invalid:outline-red-700
             h-[134px] 
             rounded-md 
-            border-1 
-            focus:border-green 
-            focus:outline 
-            focus:outline-green 
+            outline-2
+            focus:valid:outline-green
+            valid:outline-green
             shadow-sm  
             focus:shadow-none 
             dark:focus:outline-white 
@@ -99,31 +99,43 @@
             dark:text-white
             resize-none
             text-lg"></textarea>
-            }
-            @if(this.currentLang === "en"){
-            <textarea placeholder="Your message" class="w-full 
-            placeholder-gray-500
-            dark:placeholder-white 
-            h-[134px] 
-            rounded-md 
-            border-1 
-            focus:border-green 
-            focus:outline 
-            focus:outline-green 
-            dark:outline-white
-            shadow-sm  
-            focus:shadow-none  
-            border-text-gray 
-            p-2 
-            focus:dark:outline-white
-            dark:border-white
-            dark:text-white
-            resize-none
-            text-lg"></textarea>
-            }
-            <button type="submit"
+            <div class="flex flex-row-reverse gap-2">
+                <label #checkboxs class="dark:text-white text-text-gray transition-colors">
+                    Ich habe die <a
+                        class="text-green dark:text-green-dm cursor-pointer font-semibold underline">Datenschutzerklärung</a>
+                    gelesen und akzeptiert.
+                </label>
+                <input type="checkbox" class="border-4 border-white" #checkbox="ngModel" name="checkbox" required
+                    ngModel class="accent-green dark:accent-green-dm cursor-pointer hover:accent-green-600">
+            </div>
+            <button type="submit" [disabled]="validation"
                 class="dark:active:bg-green active:bg-green-dm text-green border-green dark:text-green-dm dark:border-green-dm border-[1px] py-2 px-3 rounded-xl cursor-pointer shadow-md hover:bg-green hover:text-white transition-all">Nachricht
                 senden!</button>
         </div>
+        @if(startTimer){
+        <p class="text-3xl text-center dark:text-white text-text-gray max-[400px]:text-xl">Du musst {{timeLeft}}... Sekunden warten, bevor du eine neue Nachricht versenden kannst</p>
+        }
     </form>
 </div>
+}
+
+@if(mailSent){
+<div #mailSucces class="min-h-[411.14px] flex flex-col items-center justify-start opacity-0 max-[400px]:gap-6 gap-12">
+    @if(!startTimer){
+    <div class="[&_svg]:fill-green dark:[&_svg]:fill-green-dm max-[400px]:[&_svg]:w-[180px]">
+        <svg width="260px" height="260px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M960 1807.059c-467.125 0-847.059-379.934-847.059-847.059 0-467.125 379.934-847.059 847.059-847.059 467.125 0 847.059 379.934 847.059 847.059 0 467.125-379.934 847.059-847.059 847.059M960 0C430.645 0 0 430.645 0 960s430.645 960 960 960 960-430.645 960-960S1489.355 0 960 0M854.344 1157.975 583.059 886.69l-79.85 79.85 351.135 351.133L1454.4 717.617l-79.85-79.85-520.206 520.208Z"
+                fill-rule="evenodd" />
+        </svg>
+    </div>
+    <div class="flex flex-col items-center gap-6">
+        <span class="text-3xl max-[400px]:text-xl text-text-gray dark:text-white text-center">Vielen Dank, deine
+            Nachricht wurde erfolgreich versendet!</span>
+        <button (click)="startFormAgain()"
+            class="dark:active:bg-green active:bg-green-dm text-green border-green dark:text-green-dm dark:border-green-dm border-[1px] py-2 px-3 rounded-xl cursor-pointer shadow-md hover:bg-green hover:text-white transition-all">
+            Neue Nachricht</button>
+    </div>
+    }
+</div>
+}

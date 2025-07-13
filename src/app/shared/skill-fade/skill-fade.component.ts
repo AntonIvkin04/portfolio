@@ -12,7 +12,7 @@ export class SkillFadeComponent {
   @ViewChild('img') img!: ElementRef<HTMLElement>
 
   index: number = 0;
-  array: string[] = ['icons/vue-svgrepo-com.svg', 'icons/react-svgrepo-com.svg', 'icons/svelte-icon-svgrepo-com.svg']
+  array: string[] = ['icons/angular.svg','icons/vue-svgrepo-com.svg', 'icons/react-svgrepo-com.svg', 'icons/svelte-icon-svgrepo-com.svg']
 
   ngAfterViewInit() {
     this.interval = setInterval(() => {

@@ -1,23 +1,9 @@
 <div class="w-full pr-[22px] padding-navbar flex justify-center">
     <div id="wrapper"
-        class="h-[64px] w-full max-w-[1180px] border-b-border-gray dark:border-b-white border-b-[0.5px] flex flex-row justify-between min-[1160px]:justify-end gap-2 items-center backdrop-blur-sm z-3">
-        <div
-            class="dark:[&_span]:text-white [&_span]:transition-[transform,font-weight] [&_span]:text-text-gray flex flex-row gap-4 max-[600px]:hidden min-[1160px]:hidden [&_span]:cursor-pointer">
-            <span [ngClass]="{ 'active-dm': aboutme && darkMode(), 'active' : aboutme}"
-                (click)="scrollToPosition('about')">{{ lang[this.currentLang].aboutme }}</span>
-            <span [ngClass]="{ 'active-dm': project && darkMode(), 'active' : project}"
-                (click)="scrollToPosition('project')">{{ lang[this.currentLang].project }}</span>
-            <span [ngClass]="{ 'active-dm': skill && darkMode(), 'active' : skill}"
-                (click)="scrollToPosition('skill')">{{ lang[this.currentLang].skill }}</span>
-            <span [ngClass]="{ 'active-dm': contact && darkMode(), 'active' : contact}"
-                (click)="scrollToPosition('contact')">{{ lang[this.currentLang].contact }}</span>
-        </div>
-        <div (click)="toggleNavbarMobile()" [class.rotate-navbar-icon]="navbaropen" class="hidden flex-row justify-center dark:[&_svg]:fill-white [&_svg]:fill-black max-[600px]:flex transition-transform duration-400">
-            <svg width="48px" height="48px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z"
-                     />
-            </svg>
+        class="h-[64px] w-full max-w-[1180px] border-b-border-gray dark:border-b-white border-b-[0.5px] flex flex-row justify-between min-[1161px]:justify-end gap-2 items-center backdrop-blur-sm z-3">
+        <div class="flex flex-row items-center gap-6 min-[1161px]:hidden">
+            <a href=""><img class="pl-2" src="/icons/website-logo.webp" width="48px"></a>
+            <app-navigation class=""></app-navigation>
         </div>
         <div class="flex flex-row gap-2 [&_div]:hover:bg-side-bar-light [&_div]:dark:hover:bg-side-bar-dark">
             @if(this.currentLang === "de"){
@@ -68,20 +54,6 @@
                         d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
             </div>
-        </div>
-    </div>
-    <div #navbarmobile
-        class="w-[85%] h-12 dark:bg-side-bar-dark text-[14px] max-[400px]:text-[12px] rounded-2xl border-1 border-border-gray  bg-side-bar-light flex flex-row justify-center absolute left-[50%] -translate-x-1/2 right-0 top-0 opacity-0 items-center">
-        <div
-            class="dark:[&_span]:text-white w-full px-4 [&_span]:transition-[transform,font-weight] [&_span]:text-text-gray flex flex-row justify-between min-[1160px]:hidden [&_span]:cursor-pointer font-semibold">
-            <span [ngClass]="{ 'active-dm': aboutme && darkMode(), 'active' : aboutme}"
-                (click)="scrollToPosition('about')">{{ lang[this.currentLang].aboutme }}</span>
-            <span [ngClass]="{ 'active-dm': project && darkMode(), 'active' : project}"
-                (click)="scrollToPosition('project')">{{ lang[this.currentLang].project }}</span>
-            <span [ngClass]="{ 'active-dm': skill && darkMode(), 'active' : skill}"
-                (click)="scrollToPosition('skill')">{{ lang[this.currentLang].skill }}</span>
-            <span [ngClass]="{ 'active-dm': contact && darkMode(), 'active' : contact}"
-                (click)="scrollToPosition('contact')">{{ lang[this.currentLang].contact }}</span>
         </div>
     </div>
 </div>

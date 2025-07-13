@@ -1,18 +1,25 @@
-import { Component, effect, inject, signal, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, effect, inject, signal, ViewChild, ElementRef, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LanguageDecService } from '../../service/language/language-dec.service';
-import { Subscription } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 import { ProjectComponent } from './project/project/project.component';
-import { Language } from '../types';
+import { elementHeight, Language } from '../types';
 import { ScreenResService } from '../../service/screen-res/screen-res.service';
+import { SectionHeightDirective } from '../../directives/section-height.directive';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 
 @Component({
   selector: 'app-section-project',
   imports: [RouterModule, ProjectComponent, CommonModule],
   templateUrl: './section-project.component.html',
-  styleUrl: './section-project.component.css'
+  styleUrl: './section-project.component.css',
+  hostDirectives: [{
+    directive: SectionHeightDirective,
+    outputs: ['height'],
+    inputs: ['sectionid']
+  }]
 })
 
 export class SectionProjectComponent {
@@ -23,6 +30,10 @@ export class SectionProjectComponent {
   screenSubscription: Subscription | undefined;
   screenWidth = signal<number>(0)
 
+  private deviceService = inject(DeviceDetectorService)
+
+  slideProjects: ReturnType<typeof setInterval> = setInterval(() => { })
+
   firstLoad: boolean = false;
 
   @ViewChild('flexcontainer') flexcontainer!: ElementRef
@@ -31,6 +42,7 @@ export class SectionProjectComponent {
 
   setProjectActive = signal<number>(0)
   activeID: number = 0;
+  mouseover: boolean = false;
 
   currentLang: Language = "de";
 
@@ -71,12 +83,12 @@ export class SectionProjectComponent {
           id: 'join',
           active: false,
         },
-        // {
-        //   name: "FreeWeather",
-        //   icon: "/img/favicon_logo_join.png",
-        //   id: 'join',
-        //   active: false,
-        // },
+        {
+          name: "Portfolio",
+          icon: "/icons/website-logo.webp",
+          id: 'join',
+          active: false,
+        },
       ]
     };
 
@@ -130,7 +142,17 @@ export class SectionProjectComponent {
     setTimeout(() => {
       this.getWidthAndPosition()
       this.firstLoad = true;
+      this.startSlideProjects()
     }, 100)
+  }
+
+  startSlideProjects() {
+    this.slideProjects = setInterval(() => {
+      if (!this.mouseover && !this.deviceService.isMobile()) {
+        let index = (this.setProjectActive() + 1) % this.project.list.length
+        this.setProjectActive.set(index)
+      }
+    }, 8000)
   }
 
   getWidthAndPosition() {
@@ -166,6 +188,7 @@ export class SectionProjectComponent {
   ngOnDestroy() {
     this.langSubscription?.unsubscribe()
     this.screenSubscription?.unsubscribe()
+    clearInterval(this.slideProjects)
   }
 
   darkMode() {

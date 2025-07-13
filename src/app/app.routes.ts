@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
-import {MainpageComponent} from './main/mainpage/mainpage.component'
+import { MainContentComponent } from './main/main-content/main-content.component';
+import { ImprintComponent } from './main/imprint/imprint.component';
 
 export const routes: Routes = [
-    {path: '', component: MainpageComponent},
+    {path: '', component: MainContentComponent},
+    {path: 'imprint', component: ImprintComponent},
 ];

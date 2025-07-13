@@ -1,31 +1,42 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Output } from '@angular/core';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
 import { FormComponent } from '../form/form.component';
+import { elementHeight, Language } from '../types';
+import { SectionHeightDirective } from '../../directives/section-height.directive';
 
 @Component({
   selector: 'app-section-contact-me',
   imports: [FormComponent],
   templateUrl: './section-contact-me.component.html',
-  styleUrl: './section-contact-me.component.css'
+  styleUrl: './section-contact-me.component.css',
+   hostDirectives: [{
+        directive: SectionHeightDirective,
+        outputs: ['height'],
+        inputs: ['sectionid']
+      }]
 })
 export class SectionContactMeComponent {
   private langService = inject(LanguageDecService)
   langSubscription: Subscription | undefined;
 
-  currentLang:string = '';
-
+  currentLang: Language = 'de';
+  
   constructor() {
 
   }
 
-  ngOnInit(){
+  ngAfterViewInit() {
+
+  }
+
+  ngOnInit() {
     this.langSubscription = this.langService.lang$.subscribe(lang => {
       this.currentLang = lang;
     })
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.langSubscription?.unsubscribe();
   }
 

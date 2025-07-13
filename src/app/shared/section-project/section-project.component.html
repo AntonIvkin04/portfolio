@@ -1,4 +1,4 @@
-<section class="flex flex-col" id="project">
+<section class="flex flex-col" id="project" (mouseover)="mouseover=true" (mouseleave)="mouseover=false">
     <span class="text-left text-[38px] mb-[48px] dark:text-white max-[540px]:text-[28px] max-[520px]:mb-[38px]">Projekte</span>
     <div class="bg-side-bar-light rounded-b-xl dark:bg-side-bar-dark flex flex-col items-center">
         <div class="flex flex-row justify-center w-full">
@@ -8,9 +8,9 @@
                     </div>
                     @for (item of project.list; track $index) {
                     <div #projectelement [id]="project.list[$index].id" class="text-2xl h-[60px] dark:text-white py-4 px-4 flex flex-row gap-2 opacity-50 hover:cursor-pointer
-                    hover:opacity-100 hover:dark:bg-[#292828] hover:bg-[#f2f2f2] transition-opacity z-0
+                    hover:opacity-100 hover:dark:bg-[#292828] hover:bg-[#f2f2f2] transition-opacity z-0 items-center
                     " (click)="this.setProjectActive.set($index)" [ngClass]="{'active-dm': project.list[$index].active && darkMode(), 'active' : project.list[$index].active}"><div class="project-title">{{ project.list[$index].name }}</div><img
-                            src="{{ project.list[$index].icon }}"></div>
+                        width="32px"    src="{{ project.list[$index].icon }}"></div>
                     }
                 </div>
                 <app-project [currentLang]="this.currentLang" [currentProjectIndex]="setProjectActive()"

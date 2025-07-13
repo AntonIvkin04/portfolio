@@ -1,20 +1,30 @@
-import { Component, ElementRef, inject, QueryList, ViewChild, ViewChildren, signal, effect } from '@angular/core';
+import { Component, ElementRef, inject, QueryList, ViewChild, ViewChildren, signal, Output, EventEmitter } from '@angular/core';
 import { LanguageDecService } from '../../service/language/language-dec.service';
 import { Subscription } from 'rxjs';
 import { HeroAnimationDirective } from '../../directives/hero-animation.directive';
-import { Language } from '../types';
+import { elementHeight, Language } from '../types';
 import { delay, spawn } from '../util';
+import { SectionAboutMeComponent } from "../section-hero/section-about-me/section-about-me.component";
+import { SectionHeightDirective } from '../../directives/section-height.directive';
 
 @Component({
   selector: 'app-section-hero',
-  imports: [HeroAnimationDirective],
+  imports: [HeroAnimationDirective, SectionAboutMeComponent],
   templateUrl: './section-hero.component.html',
-  styleUrl: './section-hero.component.css'
+  styleUrl: './section-hero.component.css',
+   hostDirectives: [{
+        directive: SectionHeightDirective,
+        outputs: ['height'],
+        inputs: ['sectionid']
+      }]
 })
 export class SectionHeroComponent {
+
   private langService = inject(LanguageDecService)
-  private animationPlay = false;
   langSubscription: Subscription | undefined;
+
+  private animationPlay = false;
+  
   currentLang: Language = 'de'
   array: [] = [];
   darkmode = signal<boolean>(true)
@@ -49,6 +59,9 @@ export class SectionHeroComponent {
     this.langSubscription = this.langService.lang$.subscribe(lang => {
       this.currentLang = lang;
     })
+  }
+
+  ngAfterViewInit(){
   }
 
   async startTextAnimaton() {

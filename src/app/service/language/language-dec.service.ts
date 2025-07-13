@@ -9,6 +9,7 @@ export class LanguageDecService {
 
   private lang = new BehaviorSubject<Language>('de');
   lang$: Observable<Language> = this.lang.asObservable();
+  
   constructor() { }
 
   setLanguage(lang_string:Language) {

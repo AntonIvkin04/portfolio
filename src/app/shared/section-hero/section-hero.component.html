@@ -1,9 +1,10 @@
-<section id="about" class="flex flex-col gap-[56px] max-[870px]:h-auto h-[626px] items-center">
+<section id="about" class="flex flex-col gap-[56px] max-[870px]:h-auto h-[986px] relative items-center">
     <div id="about-me-wrapper"
-        class="flex flex-1/2 items-center flex-col gap-[48px] max-[380px]:gap-[38px] justify-between select-none about-me w-full h-full relative">
+        class="flex flex-1/2 items-center flex-col gap-[48px] max-[380px]:gap-[38px] justify-between select-none about-me w-full h-full">
 
         <img class="w-[340px] max-[600px]:w-[280px] max-[420px]:w-[220px] max-[440px]:w-[240px] max-[360px]:w-[180px] max-[340px]:w-[160px] max-[600px]:hover:outline-8 aspect-square top-70 right-2 absolute max-[870px]:static outline-green outline-6 hover:outline-12 transition-[outline,shadow] cursor-pointer shadow-l/30 shadow-green hover:shadow-xl/30  rounded-full"
             src="img/hero-v2.png" (click)="startTextAnimaton()">
+            
         <div class="absolute max-[870px]:hidden top-30 right-32 w-[128px] [&_svg]:fill-green">
             <svg fill="#000000" width="128px" height="128px" viewBox="0 0 256 256" id="Flat"
                 xmlns="http://www.w3.org/2000/svg" transform="rotate(45)">
@@ -37,9 +38,11 @@
         <div class="flex flex-row justify-start items-start w-full mx-auto">
             <div
                 class="flex flex-col [&_div]:rounded-xl gap-[12px] [&_div]:pr-2 [&_div]:h-[128px] max-[410px]:[&_div]:h-[98px] [&_div]:shadow-2xs [&_div]:transition-[width] [&_div]:duration-280 [&_div]:bg-side-bar-light [&_div]:dark:bg-side-bar-dark absolute top-88 left-0 max-[870px]:static">
-                <div #shortinfocontainer class="bg-side-bar-light flex w-[148px] flex-row items-center group max-[500px]:max-w-[310px] max-[410px]:max-w-[280px] max-[360px]:max-w-[260px] max-[340px]:max-w-[240px]"
+                <div #shortinfocontainer
+                    class="bg-side-bar-light flex w-[148px] flex-row items-center group max-[500px]:max-w-[310px] max-[410px]:max-w-[280px] max-[360px]:max-w-[260px] max-[340px]:max-w-[240px]"
                     (mouseover)="showText(this.location, 0, 368)">
-                    <div class="flex flex-row justify-start items-center gap-2 pl-5 max-[410px]:[&_svg]:w-[48px] [&_svg]:aspect-square">
+                    <div
+                        class="flex flex-row justify-start items-center gap-2 pl-5 max-[410px]:[&_svg]:w-[48px] [&_svg]:aspect-square">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                             width="74" height="74" viewBox="0 0 256 256" xml:space="preserve"
                             class="[&_path]:dark:fill-green-dm [&_path]:fill-green">
@@ -72,7 +75,8 @@
                 <div #shortinfocontainer
                     class="bg-side-bar-light flex w-[148px] flex-row items-center group max-[500px]:max-w-[360px] max-[440px]:max-w-[320px] max-[410px]:max-w-[280px] max-[360px]:max-w-[260px] max-[340px]:max-w-[240px]"
                     (mouseover)="showText(this.code, 1, 438)">
-                    <div class="flex flex-row justify-start items-center gap-2 pl-5  max-[410px]:[&_svg]:w-[48px] [&_svg]:aspect-square">
+                    <div
+                        class="flex flex-row justify-start items-center gap-2 pl-5  max-[410px]:[&_svg]:w-[48px] [&_svg]:aspect-square">
                         <svg fill="#000000" width="74px" height="74px" viewBox="0 0 256 256" id="Flat"
                             xmlns="http://www.w3.org/2000/svg" class="[&_path]:dark:fill-green-dm [&_path]:fill-green">
                             <path
@@ -92,5 +96,10 @@
                         class="text-lg font-semibold pl-5 max-[360px]:pl-2 text-left pr-2 max-[340px]:text-sm max-[440px]:text-base dark:text-green-dm text-green hidden">{{
                         this.info_text.code_info[this.currentLang] }}</span>
                 </div>
+            </div>
+        </div>
+        <div class="flex flex-col gap-[56px]">
+            <hr class="w-[100%] h-[2px] border-0">
+            <app-section-about-me></app-section-about-me>
+        </div>
     </div>
-   

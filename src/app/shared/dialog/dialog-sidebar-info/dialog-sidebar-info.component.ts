@@ -4,6 +4,7 @@ import { FormComponent } from '../../form/form.component';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { ScreenResService } from '../../../service/screen-res/screen-res.service';
 import { ScrollYServiceService } from '../../../service/scroll-y/scroll-y-service.service';
+import { Language } from '../../types';
 
 
 @Component({
@@ -19,13 +20,13 @@ export class DialogSidebarInfoComponent {
   private scrollY = inject(ScrollYServiceService)
 
   public type: string = ''
-  public currentLang: string = ''
+  public currentLang:Language = 'de';
   public copied: boolean | any = false;
 
   constructor(
     @Inject(DIALOG_DATA) public data: {
       type: string,
-      currentLang: string
+      currentLang:Language
     },
   ) {
     this.type = this.data.type

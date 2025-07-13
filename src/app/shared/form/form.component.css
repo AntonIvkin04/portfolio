@@ -1,0 +1,25 @@
+.mailSent{
+    animation: mailSentFade 600ms forwards ease-out;
+}
+
+@keyframes mailSentFade {
+    from{
+        opacity: 100;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+.mailSentSucces{
+    animation: mailSentSucces 600ms forwards ease-out;
+}
+
+@keyframes mailSentSucces {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 100;
+    }
+}

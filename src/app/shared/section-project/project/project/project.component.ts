@@ -79,19 +79,19 @@ export class ProjectComponent {
         },
         demo_link: '',
         github_link: '',
-        tech_stack: ['html', 'css', 'javascript','firebase']
+        tech_stack: ['html', 'css', 'javascript', 'firebase']
       } :
-        {
-          name: '',
-          date: '',
-          demo_pic: '',
+        this.currentProjectIndex() === 2 ? {
+          name: 'Portfolio',
+          date: '2025',
+          demo_pic: 'projects/portfolio-demo.png',
           description: {
-            de: '',
-            en: '',
+            de: 'Tasks erstellen, verschieben, erledigen ✅. Join ist ein Kanbanboard welches eine Kontaktliste beinhaltet und somit ideal für das organsieren deines Teams ist. Das Projekt wurde mit einem Team aus drei Personen erstellt.',
+            en: "Create tasks, move them, complete them ✅. That's the core of Join, a Kanban board designed to simplify team collaboration. What makes Join stand out is its integrated contact list, making it ideal for organizing your team. This project was developed by a three-person team.",
           },
           organisation: {
-            de: '',
-            en: ''
+            de: 'Das Projekt wurde in einem 3er Team erstellt. Meine Aufgabe war das Kanbanboard mit der Firebase implemention.',
+            en: 'The project was built by a team of three. My task was the Kanban board with Firebase implementation.'
           },
           learn_goal: {
             de: '',
@@ -99,8 +99,28 @@ export class ProjectComponent {
           },
           demo_link: '',
           github_link: '',
-          tech_stack: []
-        }
+          tech_stack: ['angular', 'typescript', 'tailwind']
+        } :
+          {
+            name: '',
+            date: '',
+            demo_pic: '',
+            description: {
+              de: '',
+              en: '',
+            },
+            organisation: {
+              de: '',
+              en: ''
+            },
+            learn_goal: {
+              de: '',
+              en: '',
+            },
+            demo_link: '',
+            github_link: '',
+            tech_stack: []
+          }
   })
 
   titel = computed(() => {

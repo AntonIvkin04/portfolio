@@ -65,9 +65,6 @@ export class MainContentComponent {
 
   ngAfterViewInit() {
     this.pushNavigationData()
-    setTimeout(() => {
-      console.log(this.sectionHeights)
-    }, 1000);
   }
 
   handleHeight(height:elementHeight){

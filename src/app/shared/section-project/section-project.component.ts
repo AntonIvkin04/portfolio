@@ -152,7 +152,7 @@ export class SectionProjectComponent {
         let index = (this.setProjectActive() + 1) % this.project.list.length
         this.setProjectActive.set(index)
       }
-    }, 8000)
+    }, 10000)
   }
 
   getWidthAndPosition() {

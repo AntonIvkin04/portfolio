@@ -1,11 +1,18 @@
 <div class="flex flex-col gap-[32px]">
     <div #pic
-        class="flex flex-col items-center justify-center bg-side-bar-light dark:bg-side-bar-dark rounded-2xl shadow-2xs">
-        <img src={{currentProject().demo_pic}} class="px-4 py-4 rounded-4xl max-h-[440px]">
+        class="flex flex-col items-center justify-center bg-side-bar-light group max-h-[400px] relative overflow-hidden max-w-[800px] dark:bg-side-bar-dark rounded-2xl shadow-2xs">
+        <img src={{currentProject().demo_pic}}
+            class="px-4 py-4 rounded-4xl  object-cover transition-[scale] duration-250 ease-in-out hover:brightness-65 cursor-pointer hover:scale-115">
+        <div
+            class="group-hover:opacity-100 opacity-0 transition-all absolute bg-side-bar-light dark:bg-side-bar-dark px-4 py-2 rounded-4xl pointer-events-none">
+            <span class="text-6xl text-green dark:text-green-dm">Start
+                demo!</span>
+        </div>
     </div>
     <div #techicons class="flex flex-row gap-[22px]">
         @for(item of currentProject().tech_stack; track $index){
-            <img class="max-[520px]:w-[48px] max-[520px]:h-[48px]" src={{this.getTechSvgSrc(item)}} width="64px" height="64px">
+        <img class="max-[520px]:w-[48px] max-[520px]:h-[48px]" src={{this.getTechSvgSrc(item)}} width="64px"
+            height="64px">
         }
     </div>
     <div class="flex flex-col 
@@ -59,27 +66,27 @@
                 </svg>
             </div>
         </button>
-        <button class="outline-2 outline-green text-green px-2 py-1 text-xl rounded-xl bg-side-bar-light flex flex-row gap-2 items-center
-            cursor-pointer
+        <a href="{{ this.currentProject().demo_link }}" target="_blank"><button class="outline-2 outline-green text-green px-2 py-1 text-xl rounded-xl bg-side-bar-light flex flex-row gap-2 items-center
             transition-[scale]
             hover:scale-110
             dark:bg-side-bar-dark
             dark:text-green-dm
             dark:outline-green-dm
             ">Demo
-            <div class="[&_svg]:fill-green [&_svg]:dark:fill-green-dm">
-                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 408.221 408.221"
-                    xml:space="preserve">
-                    <g>
+                <div class="[&_svg]:fill-green [&_svg]:dark:fill-green-dm">
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+                        viewBox="0 0 408.221 408.221" xml:space="preserve">
                         <g>
-                            <path d="M204.11,0C91.388,0,0,91.388,0,204.111c0,112.725,91.388,204.11,204.11,204.11c112.729,0,204.11-91.385,204.11-204.11
+                            <g>
+                                <path d="M204.11,0C91.388,0,0,91.388,0,204.111c0,112.725,91.388,204.11,204.11,204.11c112.729,0,204.11-91.385,204.11-204.11
 			C408.221,91.388,316.839,0,204.11,0z M286.547,229.971l-126.368,72.471c-17.003,9.75-30.781,1.763-30.781-17.834V140.012
 			c0-19.602,13.777-27.575,30.781-17.827l126.368,72.466C303.551,204.403,303.551,220.217,286.547,229.971z" />
+                            </g>
                         </g>
-                    </g>
-                </svg>
-            </div>
-        </button>
+                    </svg>
+                </div>
+            </button>
+        </a>
     </div>
 </div>

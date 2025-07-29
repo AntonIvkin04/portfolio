@@ -57,7 +57,7 @@ export class ProjectComponent {
         de: 'Das Ziel dieses Projekts, war es, ein besseres Gefühl für Objektorientiertes Programmieren und Klassen in Javascript',
         en: 'The goal of this project was to gain a better understanding of Object-Oriented Programming and classes in JavaScript.',
       },
-      demo_link: '',
+      demo_link: 'https://yurei.anton-ivkin.de/',
       github_link: '',
       tech_stack: ['html', 'javascript']
     } :

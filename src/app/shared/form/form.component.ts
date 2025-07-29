@@ -39,7 +39,7 @@ export class FormComponent {
   interval: ReturnType<typeof setInterval> = setInterval(() => { });
 
   post = {
-    endPoint: 'http://anton-ivkin.de/portfolio/sendMail.php',
+    endPoint: 'https://anton-ivkin.de/sendMail.php',
     body: (payload: any) => JSON.stringify(payload),
     options: {
       headers: {

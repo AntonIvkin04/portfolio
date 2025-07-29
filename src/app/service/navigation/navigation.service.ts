@@ -25,6 +25,12 @@ export class NavigationService {
     this.arrayNav.splice(0, this.arrayNav.length)
   }
 
+  ngOnInit(){
+    setTimeout(() =>{
+      console.log(this.arrayNav, this.arrayHeight)
+    },1000)
+  }
+
   constructor() {
     // setTimeout(() =>{
     //   this.arrayObj.push({

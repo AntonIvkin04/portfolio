@@ -17,6 +17,7 @@ export class LanguageDecService {
       this.lang.next(lang_string);
     }
   }
+  
   isEnglish():boolean {
     return this.lang.value === 'en';
   }

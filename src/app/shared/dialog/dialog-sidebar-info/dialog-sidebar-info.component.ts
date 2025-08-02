@@ -18,19 +18,38 @@ export class DialogSidebarInfoComponent {
   private dialog = inject(Dialog)
   private clipboard = inject(Clipboard)
   private scrollY = inject(ScrollYServiceService)
+  private screenRes = inject(ScreenResService)
 
   public type: string = ''
-  public currentLang:Language = 'de';
+  public currentLang: Language = 'de';
   public copied: boolean | any = false;
+
+  screenResSubscription: any;
 
   constructor(
     @Inject(DIALOG_DATA) public data: {
       type: string,
-      currentLang:Language
+      currentLang: Language
     },
   ) {
     this.type = this.data.type
     this.currentLang = this.data.currentLang
+  }
+
+  ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+    this.screenResSubscription = this.screenRes.screenW$.subscribe((x) => {
+      if (x < 700) {
+        this.close()
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.screenResSubscription?.unsubscribe()
   }
 
   close() {

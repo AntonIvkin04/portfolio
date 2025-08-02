@@ -16,8 +16,4 @@ import { FooterComponent } from './shared/footer/footer.component';
 export class AppComponent {
   title:string = 'portfolio';
   demo:boolean = true;
-
-  test(){
-    console.log("test")
-  }
 }

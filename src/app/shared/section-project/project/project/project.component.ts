@@ -2,6 +2,9 @@ import { Component, computed, effect, input, InputSignal, ViewChildren, QueryLis
 import { Language } from '../../../types';
 import { ScreenResService } from '../../../../service/screen-res/screen-res.service';
 import { Subscription } from 'rxjs';
+import { ScrollYServiceService } from '../../../../service/scroll-y/scroll-y-service.service';
+import { Dialog } from '@angular/cdk/dialog';
+import { DialogDownloadInfoComponent } from '../../../dialog/dialog-download-info/dialog-download-info.component';
 
 
 
@@ -17,6 +20,11 @@ export class ProjectComponent {
 
   private screenSer = inject(ScreenResService);
   screenSubscription: Subscription | undefined;
+
+  private scrollY = inject(ScrollYServiceService)
+
+  private dialog = inject(Dialog)
+  dialogSubscription: Subscription | undefined
 
   screenWSignal = signal<number>(0)
 
@@ -58,7 +66,7 @@ export class ProjectComponent {
         en: 'The goal of this project was to gain a better understanding of Object-Oriented Programming and classes in JavaScript.',
       },
       demo_link: 'https://yurei.anton-ivkin.de/',
-      github_link: '',
+      github_link: 'https://github.com/AntonIvkin04/yureis-wish',
       tech_stack: ['html', 'javascript']
     } :
       this.currentProjectIndex() === 1 ? {
@@ -140,32 +148,13 @@ export class ProjectComponent {
   }
 
   ngAfterViewInit() {
-    // this.setElementHeight()
     this.screenSubscription = this.screenSer.screenW$.subscribe((w) => {
       this.screenWSignal.set(w)
     })
   }
 
-  // setElementHeight = effect(() => {
-  //   this.screenWSignal()
-  //   // console.log('screen' + true)
-  //   this.textcontainers?.forEach(e => {
-  //     let articelElement = e.nativeElement.querySelector('.span') as HTMLElement
-  //     // console.log(articelElement.offsetHeight)
-  //     let elementHeight = e.nativeElement.offsetHeight
-  //     e.nativeElement.style.height = `${elementHeight}px`;
-  //   });
-  // })
-
-  // setElementHeight() {
-  //   this.textcontainers.forEach(e => {
-  //     let elementHeight = e.nativeElement.offsetHeight
-  //     e.nativeElement.style.height = `${elementHeight}px`;
-  //   });
-  // }
-
   getTechSvgSrc(techicon: string) {
-    return `icons/${techicon}.svg`
+    return `icon/${techicon}.svg`
   }
 
   getLocalizedObj(objKey: 'description' | 'organisation' | 'learn_goal'): string {
@@ -173,4 +162,27 @@ export class ProjectComponent {
     return this.currentProject()[objKey][lang]
   }
 
+  ngOnDestroy() {
+    this.dialogSubscription?.unsubscribe()
+  }
+
+  openModualInfo(type: string) {
+    const data = {
+      type: type,
+      currentLang: this.currentLang(),
+    }
+
+    if (this.screenWSignal() > 800) {
+      this.scrollY.modalOpen = true;
+
+      this.dialogSubscription = this.dialog.open(DialogDownloadInfoComponent,
+        { data: data, autoFocus: '__non_existing_element__', panelClass: ['slideInDialog-md', 'animateDialog'] })
+
+        .closed.subscribe(x => {
+          this.scrollY.modalOpen = false;
+        })
+    } else {
+      window.open(this.currentProject().demo_link , "_blank");
+    }
+  }
 }

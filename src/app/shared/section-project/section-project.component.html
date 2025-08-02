@@ -1,5 +1,9 @@
 <section class="flex flex-col" id="project" (mouseover)="mouseover=true" (mouseleave)="mouseover=false">
+    @if (this.currentLang === "de") {
     <span class="text-left text-[38px] mb-[48px] dark:text-white max-[540px]:text-[28px] max-[520px]:mb-[38px]">Projekte</span>
+    }@else {
+    <span class="text-left text-[38px] mb-[48px] dark:text-white max-[540px]:text-[28px] max-[520px]:mb-[38px]">Projects</span>
+    }
     <div class="bg-side-bar-light rounded-b-xl dark:bg-side-bar-dark flex flex-col items-center">
         <div class="flex flex-row justify-center w-full">
             <div id="project-wrapper" class="flex flex-col h-[100%] w-full">
@@ -14,10 +18,8 @@
                     }
                 </div>
                 <app-project [currentLang]="this.currentLang" [currentProjectIndex]="setProjectActive()"
-                    class="px-4 py-8 rounded-b-xl bg-[#e6e6e6] dark:bg-[#313030] min-h-[1160px]"></app-project>
+                    class="px-4 py-8 rounded-b-xl bg-[#e6e6e6] dark:bg-[#313030]"></app-project>
             </div>
         </div>
     </div>
 </section>
-
-<!--                     [ngClass]="{'active-dm': project.list[$index].active && darkMode(), 'active' : project.list[$index].active}"  -->

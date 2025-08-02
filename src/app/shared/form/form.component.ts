@@ -4,6 +4,10 @@ import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { formValue, Language } from '../types';
 import { delay } from '../util';
+import { ScrollYServiceService } from '../../service/scroll-y/scroll-y-service.service';
+import { Dialog } from '@angular/cdk/dialog';
+import { Subscription } from 'rxjs';
+import { DialogPrivacyPolicyComponent } from '../dialog/dialog-privacy-policy/dialog-privacy-policy.component';
 
 @Component({
   selector: 'app-form',
@@ -20,8 +24,13 @@ export class FormComponent {
   @ViewChild('mail') mail!: ElementRef<HTMLElement>
   @ViewChild('mailSucces') mailSucces!: ElementRef<HTMLElement>
 
+  public scrollY = inject(ScrollYServiceService)
+
+  private dialog = inject(Dialog)
+  dialogSubscription: Subscription | undefined
+
   private http = inject(HttpClient)
-  
+
   textareaplaceholder: {
     de: string,
     en: string,
@@ -128,15 +137,12 @@ export class FormComponent {
     this.validationFeedback(ngForm, 'email')
     this.validationFeedback(ngForm, 'name')
 
-    console.log(this.startTimer)
     if (!this.checkMailsAlreadySent() || this.startTimer) {
       if (!this.startTimer) {
         this.startTimerMail()
       }
       return
     }
-
-    console.log(true)
 
     if (ngForm.submitted && ngForm.valid && !this.mailTest) {
 
@@ -145,7 +151,7 @@ export class FormComponent {
         name: ngForm.value.name,
         message: ngForm.value.message,
       }
-      
+
       this.http.post(this.post.endPoint, this.post.body(contactData))
         .subscribe({
           next: (response) => {
@@ -159,5 +165,21 @@ export class FormComponent {
     } else if (ngForm.submitted && ngForm.form.valid && this.mailTest) {
       this.startSuccesAnimation(ngForm)
     }
+  }
+
+  openModualInfo(type: string) {
+    const data = {
+      type: type,
+      currentLang: this.currentLang,
+    }
+
+    this.scrollY.modalOpen = true;
+
+    this.dialogSubscription = this.dialog.open(DialogPrivacyPolicyComponent,
+      { data: data, autoFocus: '__non_existing_element__', panelClass: ['slideInDialog-md', 'animateDialog'] })
+
+      .closed.subscribe(x => {
+        this.scrollY.modalOpen = false;
+      })
   }
 }

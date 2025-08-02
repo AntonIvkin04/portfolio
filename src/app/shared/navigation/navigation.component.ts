@@ -56,13 +56,6 @@ export class NavigationComponent {
   }
 
   ngOnInit() {
-
-    setTimeout(() => {
-      this.screenRes.screenW$.subscribe((x) => {
-        console.log(x)
-      })
-    }, 500)
-
     this.langSubscription = this.langService.lang$.subscribe(lang => {
       this.currentLang = lang
       setTimeout(() => {
@@ -123,7 +116,6 @@ export class NavigationComponent {
       return; // Keine Sektionen vorhanden, nichts zu tun.
     }
 
-    // console.log(scrollPercentage)
     let cumulativePercentage = 0;
     for (const section of this.arrayObjHeight) {
       // Berechne, wie viel Prozent der Gesamthöhe diese eine Sektion ausmacht.

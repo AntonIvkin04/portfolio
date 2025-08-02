@@ -25,28 +25,6 @@ export class ScrollYServiceService {
     this.subscribeScroll()
   }
 
-  // observeElement(element: ElementRef, elementid:string) {
-
-  //   const observer = new IntersectionObserver(entries => {
-
-  //     entries.forEach(entry => {
-
-  //       if (entry.isIntersecting) {
-
-  //         console.log(true + elementid)
-  //         console.log(entry.intersectionRatio)
-
-  //       } else {
-  //         console.log(false + elementid)
-  //       }
-
-  //     });
-
-  //   }, { threshold: 0.40 });
-
-  //   observer.observe(element.nativeElement);
-
-  // }
 
   subscribeScroll() {
     this.scrollSubscription = fromEvent(window, 'scroll').pipe(

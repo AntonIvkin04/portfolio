@@ -108,7 +108,6 @@ export class SectionHeroComponent {
     let currentElement = this.infocontainer.get(index)
     let currentSvg = this.svg.get(index)
     currentElement!.nativeElement.style.width = `${width}px`
-    // console.log(currentElement)
     setTimeout(() => {
       currentSvg!.nativeElement.style.display = 'none'
       id.nativeElement.style.display = 'block'

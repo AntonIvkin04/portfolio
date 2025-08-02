@@ -68,6 +68,7 @@ export class SectionProjectComponent {
       icon: string,
       id: string,
       active: boolean,
+      warning: boolean,
     }[]
   } = {
       list: [
@@ -76,19 +77,20 @@ export class SectionProjectComponent {
           icon: "/img/yureis-wish-icon.png",
           id: 'yurei',
           active: true,
+          warning: true,
         },
-        {
-          name: "Join",
-          icon: "/img/favicon_logo_join.png",
-          id: 'join',
-          active: false,
-        },
-        {
-          name: "Portfolio",
-          icon: "/icons/website-logo.webp",
-          id: 'join',
-          active: false,
-        },
+        // {
+        //   name: "Join",
+        //   icon: "/img/favicon_logo_join.png",
+        //   id: 'join',
+        //   active: false,
+        // },
+        // {
+        //   name: "Portfolio",
+        //   icon: "/icons/website-logo.webp",
+        //   id: 'join',
+        //   active: false,
+        // },
       ]
     };
 

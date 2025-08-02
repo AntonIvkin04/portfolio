@@ -1,0 +1,67 @@
+<div #dialogdiv
+    class="w-[580px] relative h-[508px] bg-side-bar-light dark:bg-side-bar-dark rounded-2xl inset-shadow-2xs shadow-2xs flex flex-col py-2 px-2 gap-[28px] overflow-hidden">
+    <div class="flex flex-row items-end justify-end">
+        <div (click)="close()"
+            class="hover:cursor-pointer [&_svg]:opacity-40 [&_svg]:dark:opacity-80 [&_svg]:hover:opacity-100 [&_svg]:dark:fill-white [&_svg]:fill-black">
+            <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" />
+            </svg>
+        </div>
+    </div>
+    <div class="flex flex-col items-center justify-center px-12 gap-12">
+        <span class="text-center dark:text-white text-xl">{{ text.info[this.currentLang] }}</span>
+        <div class="flex flex-col gap-3 text-3xl dark:text-white justify-center">
+            <div class="flex flex-row gap-2">
+                <div class="text-green dark:text-green-dm">1.</div>
+                <div>{{ text.steps[this.currentLang][0] }}</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="text-green dark:text-green-dm">2.</div>
+                <div>{{ text.steps[this.currentLang][1] }}</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="text-green dark:text-green-dm">3.</div>
+                <div>{{ text.steps[this.currentLang][2] }}</div>
+            </div>
+        </div>
+        <div class="flex flex-row gap-8 items-center">
+            <a href="/download/yureis-wish.zip" download="yureis-wish.zip">
+            <button class="outline-2 outline-green cursor-pointer text-green px-2 py-1 text-xl rounded-xl bg-side-bar-light flex flex-row gap-2 items-center
+            transition-[scale]
+            hover:scale-110
+            dark:bg-side-bar-dark
+            dark:text-green-dm
+            dark:outline-green-dm
+            ">{{ text.download[this.currentLang] }}
+                <div class="[&_path]:fill-green [&_path]:dark:fill-green-dm">
+                    <svg width="32px" height="32px" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M23 22C23 22.5523 22.5523 23 22 23H2C1.44772 23 1 22.5523 1 22C1 21.4477 1.44772 21 2 21H22C22.5523 21 23 21.4477 23 22Z"
+                            fill="#0F0F0F" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M13.3099 18.6881C12.5581 19.3396 11.4419 19.3396 10.6901 18.6881L5.87088 14.5114C4.47179 13.2988 5.32933 11 7.18074 11L9.00001 11V3C9.00001 1.89543 9.89544 1 11 1L13 1C14.1046 1 15 1.89543 15 3L15 11H16.8193C18.6707 11 19.5282 13.2988 18.1291 14.5114L13.3099 18.6881ZM11.3451 16.6091C11.7209 16.9348 12.2791 16.9348 12.6549 16.6091L16.8193 13H14.5C13.6716 13 13 12.3284 13 11.5V3L11 3V11.5C11 12.3284 10.3284 13 9.50001 13L7.18074 13L11.3451 16.6091Z"
+                            fill="#0F0F0F" />
+                    </svg>
+                </div>
+            </button></a>
+            <a href="https://yurei.anton-ivkin.de" target="_blank">
+            <button (click)="close()" class="outline-2 cursor-pointer outline-green text-green px-2 py-1 text-xl rounded-xl bg-side-bar-light flex flex-row gap-2 items-center
+            transition-[scale]
+            hover:scale-110
+            dark:bg-side-bar-dark
+            dark:text-green-dm
+            dark:outline-green-dm
+            ">Online Demo
+                <div class="[&_svg]:stroke-green [&_svg]:dark:stroke-green-dm">
+                    <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </button></a>
+        </div>
+    </div>
+</div>

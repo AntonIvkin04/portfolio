@@ -1,8 +1,15 @@
 <div class="flex flex-col">
-    <span class="text-left text-[38px] mb-[48px] dark:text-white max-[540px]:text-[28px] max-[520px]:mb-[38px]">Über mich</span>
+    @if (this.currentLang === "de") {
+    <span class="text-left text-[38px] mb-[48px] dark:text-white max-[540px]:text-[28px] max-[520px]:mb-[38px]">Über
+        mich</span>
+    }@else {
+    <span class="text-left text-[38px] mb-[48px] dark:text-white max-[540px]:text-[28px] max-[520px]:mb-[38px]">About
+        me</span>
+    }
+
     <article class="text-text-gray max-[520px]:text-[18px] text-xl dark:text-white">
 
-        @if(this.currentLang === "de"){
+        @if(this.currentLang === "de"){‚
         {{ texts.de.about }}
         }
 
